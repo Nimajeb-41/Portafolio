@@ -1,0 +1,281 @@
+/* ============================================================================
+   BENJAMÍN PAZ — PORTFOLIO
+   responsive.css · Adaptación real por dispositivo
+   ----------------------------------------------------------------------------
+   No se trata solo de encoger: en cada corte cambian el layout, la jerarquía
+   y qué elementos merecen seguir en pantalla.
+
+   Cortes
+     ≤ 1180px  Laptop pequeño
+     ≤ 1024px  Tablet horizontal → cae la navbar de escritorio
+     ≤  860px  Tablet vertical
+     ≤  640px  Móvil
+     ≤  380px  Móvil pequeño
+     Extras: landscape bajo, pantallas anchas, puntero grueso, impresión
+   ========================================================================== */
+
+
+/* ══════════════════ ≤ 1180px · LAPTOP PEQUEÑO ══════════════════ */
+
+@media (max-width: 1180px) {
+  :root { --container: 1040px; }
+
+  .nav__link { padding: .55rem .68rem; font-size: .86rem; }
+  .brand__text small { display: none; }
+
+  .float-card--a { top: -14px; left: -12px; }
+  .float-card--b { bottom: -16px; right: -8px; }
+
+  .about { grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); }
+}
+
+
+/* ══════════════════ ≤ 1024px · TABLET HORIZONTAL ══════════════════ */
+
+@media (max-width: 1024px) {
+
+  /* La navegación de escritorio se sustituye por el menú móvil */
+  .nav__links,
+  .nav__cta { display: none; }
+  .burger   { display: block; }
+
+  .brand__text small { display: block; }
+
+  /* Hero: una sola columna, la terminal pasa debajo */
+  .hero { min-height: auto; padding-block: clamp(2.5rem, 7vw, 4rem) clamp(4.5rem, 8vw, 6rem); }
+  .hero__inner { grid-template-columns: minmax(0, 1fr); gap: 3.5rem; }
+  .hero__content { max-width: 42rem; }
+  .hero__visual { max-width: 34rem; margin-inline: auto; width: 100%; }
+  .hero__orbit { display: none; }
+  .hero__glow { background: radial-gradient(ellipse 55% 40% at 50% 30%, var(--accent-soft), transparent 70%); }
+
+  /* Sobre mí y cine: apilados */
+  .about { grid-template-columns: minmax(0, 1fr); }
+  .about__timeline { position: static; }
+
+  .cinema-intro { grid-template-columns: minmax(0, 1fr); }
+
+  /* Proyectos: el destacado deja de ser horizontal */
+  .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .project--wide { flex-direction: column; }
+  .project--wide .project__visual {
+    flex: none;
+    aspect-ratio: 21 / 9;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .footer__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .footer__brand { grid-column: 1 / -1; }
+
+  /* El halo del cursor no aporta nada en táctil */
+  .cursor-glow { display: none; }
+}
+
+
+/* ══════════════════ ≤ 860px · TABLET VERTICAL ══════════════════ */
+
+@media (max-width: 860px) {
+  :root { --nav-h: 68px; }
+
+  .section__head { margin-bottom: 2.25rem; }
+
+  .projects { grid-template-columns: minmax(0, 1fr); }
+  .project--wide { grid-column: span 1; }
+
+  .gallery__grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .gallery__head { align-items: flex-start; flex-direction: column; }
+
+  /* Modal: la ficha técnica pasa debajo del texto */
+  .modal__info { flex-direction: column; gap: 1.2rem; }
+  .modal__meta {
+    width: 100%;
+    padding-left: 0;
+    padding-top: 1rem;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    grid-template-columns: auto 1fr;
+  }
+
+  .contact-cards > li:first-child { grid-column: auto; }
+}
+
+
+/* ══════════════════ ≤ 640px · MÓVIL ══════════════════ */
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 1.15rem;
+    --section-y: 4.25rem;
+    --r-lg: 20px;
+    --r-xl: 24px;
+  }
+
+  body { line-height: 1.6; }
+
+  /* — Navbar — */
+  .brand__mark { width: 36px; height: 36px; font-size: .76rem; border-radius: 10px; }
+  .brand__text strong { font-size: .8rem; letter-spacing: .05em; }
+  .brand__text small { font-size: .6rem; }
+  .icon-btn, .burger { width: 38px; height: 38px; }
+  .burger span:nth-child(1) { top: 12px; }
+  .burger span:nth-child(2) { top: 18px; }
+  .burger span:nth-child(3) { top: 24px; }
+  .burger.is-open span:nth-child(1),
+  .burger.is-open span:nth-child(3) { top: 18px; }
+
+  .mobile-menu__panel { width: 100%; border-left: 0; }
+  .mobile-menu__link { font-size: 1.08rem; padding: .85rem .2rem; }
+
+  /* — Hero — */
+  .hero { padding-block: 2rem 4.5rem; }
+  .hero__title { line-height: .92; letter-spacing: -.04em; }
+  .hero__role { gap: .45rem; letter-spacing: .14em; }
+  .hero__desc { font-size: .96rem; }
+  .hero__actions { gap: .6rem; }
+  .hero__actions .btn { flex: 1 1 auto; justify-content: center; min-width: 150px; }
+  .hero__socials { gap: .75rem; margin-top: 2rem; }
+  .hero__socials-line { display: none; }
+  .hero__scroll { display: none; }
+
+  .terminal__body { padding: 1rem .85rem 1.15rem; font-size: .72rem; line-height: 1.85; }
+  .tl-stack span { font-size: .62rem; }
+  .float-card { padding: .55rem .75rem; }
+  .float-card--a { top: -12px; left: -6px; }
+  .float-card--b { bottom: -12px; right: -4px; }
+  .float-card strong { font-size: .76rem; }
+
+  /* — Contenido — */
+  .about__card { padding: 1.35rem 1.2rem; }
+  .about__quote { font-size: 4rem; right: 1rem; }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+
+  .skills { grid-template-columns: minmax(0, 1fr); }
+  .skill-group { padding: 1.35rem 1.2rem; }
+  .skills__note { flex-direction: column; gap: .5rem; }
+
+  .project__body { padding: 1.2rem 1.15rem 1.4rem; }
+  .project--wide .project__visual { aspect-ratio: 16 / 10; }
+  .project__actions .btn { flex: 1 1 auto; justify-content: center; }
+
+  .cinema-skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cinema-skills li { flex-direction: column; gap: .35rem; }
+
+  /* Objetivo táctil cómodo para el botón "Ampliar" */
+  .vcard__foot { flex-wrap: wrap; row-gap: .5rem; }
+  .vcard__expand { padding: .55rem .85rem; }
+
+  .gallery__grid { grid-template-columns: minmax(0, 1fr); gap: .9rem; }
+  .gallery__filters { width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: .3rem; }
+  .gallery__filters::-webkit-scrollbar { height: 0; }
+  .filter-btn { white-space: nowrap; }
+
+  .platform { padding: 1.5rem 1.3rem; }
+  .platform__icon { width: 46px; height: 46px; font-size: 1.25rem; }
+
+  .ccard { padding: 1rem; gap: .85rem; }
+  .ccard__icon { width: 42px; height: 42px; font-size: 1.1rem; }
+  .ccard__meta strong { font-size: .95rem; }
+  .ccard__meta span { font-size: .72rem; }
+
+  /* — Modal a pantalla completa — */
+  .modal { padding: 0; }
+  .modal__dialog {
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+  .modal__player { aspect-ratio: 16 / 9; }
+  .modal__info { padding: 1.1rem; }
+  .modal__nav { padding: .8rem 1.1rem; }
+  .modal__nav-btn { padding: .45rem .7rem; font-size: .8rem; }
+  .modal__close { top: .6rem; right: .6rem; width: 36px; height: 36px; }
+
+  /* — Footer — */
+  .footer__inner { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .footer__bottom { flex-direction: column; align-items: flex-start; }
+
+  .to-top { width: 42px; height: 42px; }
+}
+
+
+/* ══════════════════ ≤ 380px · MÓVIL PEQUEÑO ══════════════════ */
+
+@media (max-width: 380px) {
+  :root { --gutter: .95rem; }
+
+  .brand__text small { display: none; }
+  .hero__actions .btn { width: 100%; }
+  .cinema-skills { grid-template-columns: minmax(0, 1fr); }
+  .cinema-skills li { flex-direction: row; }
+  .social-btn { width: 40px; height: 40px; }
+  .terminal__title { display: none; }
+}
+
+
+/* ══════════════════ MÓVIL EN HORIZONTAL (poca altura) ══════════════════ */
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero { min-height: auto; padding-block: 2.5rem 3rem; }
+  .hero__scroll { display: none; }
+  .mobile-menu__panel { padding-top: calc(var(--nav-h) + .75rem); }
+  .mobile-menu__link { padding: .6rem .2rem; font-size: 1rem; }
+  .mobile-menu__foot { padding-top: 1rem; }
+
+  .modal__dialog { flex-direction: row; flex-wrap: wrap; }
+  .modal__player { flex: 1 1 58%; aspect-ratio: auto; }
+  .modal__info { flex: 1 1 40%; border-bottom: 0; overflow-y: auto; }
+  .modal__nav { flex: 1 1 100%; }
+}
+
+
+/* ══════════════════ PANTALLAS ANCHAS ══════════════════ */
+
+@media (min-width: 1600px) {
+  :root { --container: 1360px; --fs-hero: clamp(3rem, 10vw, 9.5rem); }
+  .gallery__grid { grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); }
+}
+
+
+/* ══════════════════ PUNTERO GRUESO (táctil) ══════════════════
+   Sin hover real, los estados hover no deben quedarse "pegados".
+   ========================================================== */
+
+@media (hover: none) {
+  .cursor-glow { display: none; }
+
+  .btn:hover,
+  .chip:hover,
+  .fact:hover,
+  .social-btn:hover,
+  .project:hover,
+  .vcard:hover,
+  .platform:hover,
+  .ccard:hover,
+  .cinema-skills li:hover { transform: none; }
+
+  /* En táctil los controles de la tarjeta de vídeo están siempre visibles */
+  .vcard__play { opacity: 1; background: linear-gradient(to top, rgba(0, 0, 0, .5), transparent 60%); }
+  .vcard__play-btn { transform: scale(.78); opacity: .92; }
+  .vcard__expand { padding: .5rem .8rem; }
+
+  .skill-group::after, .platform::after { display: none; }
+}
+
+
+/* ══════════════════ IMPRESIÓN ══════════════════ */
+
+@media print {
+  .nav, .mobile-menu, .to-top, .scroll-progress, .cursor-glow,
+  .backdrop, .hero__canvas, .hero__glow, .marquee, .modal,
+  .hero__scroll, .gallery__filters, .gallery__more { display: none !important; }
+
+  :root { --bg: #fff; --surface: #fff; --text: #000; --text-2: #333; --text-3: #555; }
+
+  body { background: #fff; color: #000; }
+  .section { padding-block: 1.5rem; page-break-inside: avoid; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .7em; color: #555; }
+}

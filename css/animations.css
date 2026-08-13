@@ -1,0 +1,251 @@
+/* ============================================================================
+   BENJAMÍN PAZ — PORTFOLIO
+   animations.css · Keyframes, transiciones de entrada y microinteracciones
+   ----------------------------------------------------------------------------
+   Regla de oro del proyecto: la animación acompaña, no protagoniza.
+   Todo lo que se mueve aquí respeta `prefers-reduced-motion` al final del archivo.
+   ========================================================================== */
+
+
+/* ══════════════════ KEYFRAMES ══════════════════ */
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes line-up {
+  from { transform: translateY(105%) rotate(3deg); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 45%   { opacity: 1; }
+  50%, 95%  { opacity: 0; }
+  100%      { opacity: 1; }
+}
+
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 var(--accent-line); }
+  70%  { box-shadow: 0 0 0 9px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-11px); }
+}
+
+@keyframes orbit-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes scroll-hint {
+  0%        { transform: translateY(-100%); }
+  55%, 100% { transform: translateY(100%); }
+}
+
+@keyframes grad-shift {
+  0%, 100% { background-position:   0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(20px) scale(.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes shimmer {
+  from { background-position: -160% 0; }
+  to   { background-position:  260% 0; }
+}
+
+
+/* ══════════════════ REVELADO AL HACER SCROLL ══════════════════
+   Los elementos con .reveal empiezan ocultos y `js/animations.js`
+   les añade .is-visible cuando entran en el viewport.
+   Si JavaScript falla, la regla .no-js de más abajo los muestra igual.
+   ============================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity   .75s var(--ease-soft),
+    transform .85s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Al terminar la animación soltamos will-change */
+.reveal.is-done { will-change: auto; }
+
+/* Variantes de dirección (usar con data-reveal="left|right|scale") */
+.reveal[data-reveal="left"]  { transform: translateX(-34px); }
+.reveal[data-reveal="right"] { transform: translateX(34px); }
+.reveal[data-reveal="scale"] { transform: scale(.94); }
+.reveal[data-reveal="blur"]  { filter: blur(10px); transition-property: opacity, transform, filter; }
+.reveal[data-reveal="blur"].is-visible { filter: blur(0); }
+.reveal.is-visible[data-reveal] { transform: none; }
+
+/* Sin JS: nada queda invisible */
+.no-js .reveal { opacity: 1; transform: none; filter: none; }
+
+
+/* ══════════════════ ENTRADA DEL HERO ══════════════════ */
+
+.hero__title .reveal-line > span {
+  opacity: 0;
+  animation: line-up 1s var(--ease) forwards;
+}
+.hero__title .reveal-line:nth-child(1) > span { animation-delay: .12s; }
+.hero__title .reveal-line:nth-child(2) > span { animation-delay: .26s; }
+
+.hero .reveal { transition-delay: var(--reveal-delay, 0ms); }
+
+/* El gradiente del apellido respira lentamente */
+.hero__title .grad {
+  background-size: 220% 220%;
+  animation: grad-shift 9s var(--ease-soft) infinite;
+}
+
+.dot-live { animation: pulse-ring 2.4s var(--ease-soft) infinite; }
+
+.hero__orbit { animation: orbit-spin 44s linear infinite; }
+
+.float-card--a { animation: float-y 7s var(--ease-soft) infinite; }
+.float-card--b { animation: float-y 8.5s var(--ease-soft) infinite .9s; }
+
+.caret { animation: blink 1.1s steps(1) infinite; }
+.caret--idle { opacity: .5; }
+
+.hero__scroll-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  animation: scroll-hint 2.1s var(--ease-soft) infinite;
+}
+
+
+/* ══════════════════ MARQUEE ══════════════════ */
+
+.marquee__track { animation: marquee-scroll 42s linear infinite; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+
+
+/* ══════════════════ MICROINTERACCIONES ══════════════════ */
+
+/* Barrido de luz sobre los botones primarios */
+.btn--primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, .45) 50%, transparent 80%);
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity var(--t) var(--ease-soft);
+  pointer-events: none;
+}
+.btn--primary:hover::after { opacity: 1; animation: shimmer 1.1s var(--ease-soft); }
+
+/* Subrayado de los enlaces del nav */
+.nav__link span { position: relative; display: inline-block; }
+
+/* Elevación magnética (la posición la calcula js/animations.js) */
+[data-magnetic] {
+  transition: transform .45s var(--ease);
+  will-change: transform;
+}
+
+/* Grupos de skills: brillo que sigue al puntero */
+.skill-group,
+.project,
+.vcard,
+.platform,
+.ccard { --mx: 50%; --my: 50%; }
+
+.skill-group::after,
+.platform::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(240px circle at var(--mx) var(--my), var(--accent-soft), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--t-slow) var(--ease-soft);
+  pointer-events: none;
+}
+.skill-group:hover::after,
+.platform:hover::after { opacity: 1; }
+
+/* Estado de carga del icono placeholder de proyectos */
+.project__art--empty i { animation: float-y 6s var(--ease-soft) infinite; }
+.project__hint i[data-lucide="loader"] { animation: spin-slow 2.6s linear infinite; }
+
+/* Tarjetas de la galería al montarse */
+.vcard.is-new { animation: card-in .55s var(--ease) both; }
+
+/* Esqueleto mientras el póster todavía no está disponible */
+.vcard__thumb.is-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, var(--line) 50%, transparent 70%);
+  background-size: 220% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* Cambio de tema: suavizado global y controlado */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: background-color .45s var(--ease-soft),
+              border-color     .45s var(--ease-soft),
+              color            .45s var(--ease-soft),
+              fill             .45s var(--ease-soft) !important;
+  transition-delay: 0s !important;
+}
+
+/* El interruptor de tema gira al pulsarse */
+#theme-toggle:active .icon-btn__slider { transform: rotate(-25deg); transition: transform .2s var(--ease); }
+
+
+/* ══════════════════ ACCESIBILIDAD: MENOS MOVIMIENTO ══════════════════
+   Si el sistema pide reducir el movimiento, el sitio se vuelve estático
+   pero conserva todos los cambios de color y de foco.
+   ================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .hero__title .reveal-line > span {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .cursor-glow { display: none; }
+  .backdrop__aurora { opacity: .1; }
+  .marquee__track { animation: none; }
+  .hero__scroll-line::after { animation: none; opacity: .4; }
+}

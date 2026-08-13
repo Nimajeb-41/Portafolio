@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Benjamín Paz | Web Developer &amp; Video Editor</title>
+  <meta name="description" content="Portfolio de Benjamín Paz, desarrollador web y editor de vídeo de Uruguay. Proyectos de desarrollo web y contenido audiovisual propio.">
+  <meta name="author" content="Benjamín Paz">
+  <meta name="robots" content="index, follow">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#07080b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_UY">
+  <meta property="og:site_name" content="Benjamín Paz">
+  <meta property="og:title" content="Benjamín Paz | Web Developer & Video Editor">
+  <meta property="og:description" content="Construyo experiencias digitales y contenido audiovisual combinando tecnología, creatividad y aprendizaje constante.">
+  <meta property="og:image" content="assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Benjamín Paz — Web Developer & Video Editor">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Benjamín Paz | Web Developer & Video Editor">
+  <meta name="twitter:description" content="Construyo experiencias digitales y contenido audiovisual combinando tecnología, creatividad y aprendizaje constante.">
+  <meta name="twitter:image" content="assets/images/og-image.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png">
+
+  <!-- Tipografía -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <!-- Hoja de estilos: base -> animaciones -> responsive (el orden importa) -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!--
+    Tema aplicado antes del primer pintado para evitar el "flash" de color.
+    Es el único script inline del proyecto y existe solo por este motivo.
+  -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      // Marcamos JS aquí y no en main.js: así el CSS de las animaciones nunca
+      // muestra y vuelve a ocultar el contenido.
+      root.classList.remove('no-js');
+      try {
+        var saved = localStorage.getItem('bp-theme');
+        var system = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        root.setAttribute('data-theme', saved || system);
+      } catch (e) { /* localStorage bloqueado: se mantiene el tema oscuro por defecto */ }
+    })();
+  </script>
+</head>
+
+<body>
+
+  <!-- Iconos de marca propios (Lucide no incluye estas marcas) -->
+  <svg width="0" height="0" class="visually-hidden" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 .5C5.73.5.9 5.33.9 11.6c0 4.9 3.17 9.06 7.57 10.53.55.1.76-.24.76-.53l-.02-1.86c-3.08.67-3.73-1.49-3.73-1.49-.5-1.29-1.23-1.63-1.23-1.63-1.01-.69.08-.67.08-.67 1.11.08 1.7 1.14 1.7 1.14.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.7-1.49-2.46-.28-5.05-1.23-5.05-5.49 0-1.21.43-2.2 1.14-2.98-.11-.28-.5-1.41.11-2.94 0 0 .93-.3 3.05 1.14a10.5 10.5 0 0 1 5.56 0c2.12-1.44 3.05-1.14 3.05-1.14.61 1.53.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.27-2.6 5.2-5.07 5.48.4.35.76 1.03.76 2.08l-.01 3.08c0 .3.2.64.77.53 4.4-1.47 7.56-5.63 7.56-10.53C23.1 5.33 18.27.5 12 .5Z"/>
+    </symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M23.5 6.9a3 3 0 0 0-2.12-2.13C19.5 4.25 12 4.25 12 4.25s-7.5 0-9.38.52A3 3 0 0 0 .5 6.9C0 8.79 0 12 0 12s0 3.21.5 5.1a3 3 0 0 0 2.12 2.13c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 0 0 2.12-2.13c.5-1.89.5-5.1.5-5.1s0-3.21-.5-5.1ZM9.6 15.6V8.4l6.25 3.6-6.25 3.6Z"/>
+    </symbol>
+    <symbol id="i-behance" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M9.15 4.5c.72 0 1.37.06 1.96.19.59.12 1.09.32 1.5.6.42.28.74.66.97 1.13.22.47.34 1.06.34 1.75 0 .75-.17 1.38-.51 1.88-.34.5-.85.91-1.52 1.23.92.26 1.6.72 2.05 1.39.45.66.68 1.46.68 2.4 0 .75-.15 1.4-.44 1.95-.29.55-.68 1-1.17 1.35-.49.35-1.05.6-1.68.77-.63.16-1.28.24-1.94.24H2.4V4.5h6.75Zm-.4 5.68c.59 0 1.08-.14 1.46-.42.38-.28.57-.74.57-1.37 0-.35-.06-.64-.19-.87a1.4 1.4 0 0 0-.51-.53 2.1 2.1 0 0 0-.73-.27 4.7 4.7 0 0 0-.86-.07H5.4v3.53h3.35Zm.19 5.98c.33 0 .64-.03.94-.1.3-.06.56-.17.78-.32.22-.15.4-.36.53-.62.13-.26.2-.6.2-1 0-.79-.22-1.35-.66-1.69-.44-.34-1.02-.51-1.75-.51H5.4v4.24h3.54ZM17.4 15.6c.4.4.98.6 1.74.6.54 0 1.01-.14 1.4-.41.39-.28.63-.57.72-.88h2.13c-.34 1.06-.86 1.82-1.57 2.28-.7.46-1.56.69-2.56.69-.7 0-1.32-.11-1.88-.34a3.9 3.9 0 0 1-1.42-.96 4.3 4.3 0 0 1-.9-1.49 5.6 5.6 0 0 1-.31-1.9c0-.67.11-1.29.32-1.86.22-.58.52-1.07.92-1.49.4-.42.87-.75 1.42-.99a4.6 4.6 0 0 1 1.85-.36c.75 0 1.4.15 1.96.44.56.29 1.02.68 1.38 1.17.36.49.62 1.05.78 1.68.16.63.21 1.29.16 1.98h-6.36c0 .78.22 1.44.62 1.84Zm3.05-4.98c-.32-.35-.85-.54-1.51-.54-.43 0-.79.07-1.08.22-.29.15-.52.33-.69.54-.17.22-.29.45-.36.69-.07.24-.11.46-.12.65h3.94c-.11-.72-.24-1.21-.56-1.56ZM16.2 5.9h4.94v1.44H16.2V5.9Z"/>
+    </symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.19-.53.06-.25-.12-1.05-.38-1.99-1.23-.74-.65-1.24-1.46-1.38-1.71-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.66.31-.23.24-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.56.12.17 1.75 2.67 4.24 3.75.59.25 1.05.4 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.19.21-.58.21-1.08.15-1.18-.06-.11-.23-.17-.48-.29Z"/>
+    </symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <!-- Barra de progreso de scroll -->
+  <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
+
+  <!-- Halo que sigue al cursor (solo dispositivos con puntero fino) -->
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Fondo global: rejilla + auroras -->
+  <div class="backdrop" aria-hidden="true">
+    <div class="backdrop__grid"></div>
+    <div class="backdrop__aurora backdrop__aurora--a"></div>
+    <div class="backdrop__aurora backdrop__aurora--b"></div>
+    <div class="backdrop__noise"></div>
+  </div>
+
+
+  <!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+
+      <a class="brand" href="#inicio" aria-label="Benjamín Paz — ir al inicio">
+        <span class="brand__mark" aria-hidden="true">
+          <span>B</span><span>P</span>
+        </span>
+        <span class="brand__text">
+          <strong>BENJAMÍN PAZ</strong>
+          <small>Web Developer &amp; Video Editor</small>
+        </span>
+      </a>
+
+      <nav class="nav__links" id="nav-links" aria-label="Navegación principal">
+        <a href="#inicio"   class="nav__link is-active"><span>Inicio</span></a>
+        <a href="#sobre-mi" class="nav__link"><span>Sobre mí</span></a>
+        <a href="#skills"   class="nav__link"><span>Skills</span></a>
+        <a href="#proyectos" class="nav__link"><span>Proyectos</span></a>
+        <a href="#video"    class="nav__link"><span>Video Editing</span></a>
+        <a href="#contacto" class="nav__link"><span>Contacto</span></a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="icon-btn" id="theme-toggle" type="button"
+                aria-label="Cambiar a modo claro" aria-pressed="false" title="Cambiar tema">
+          <span class="icon-btn__slider">
+            <i data-lucide="moon" class="ic ic--moon" aria-hidden="true"></i>
+            <i data-lucide="sun"  class="ic ic--sun"  aria-hidden="true"></i>
+          </span>
+        </button>
+
+        <a class="btn btn--sm btn--ghost nav__cta" href="#contacto">
+          Hablemos <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+        </a>
+
+        <button class="burger" id="burger" type="button"
+                aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menú móvil -->
+  <div class="mobile-menu" id="mobile-menu" inert>
+    <nav class="mobile-menu__panel" aria-label="Navegación móvil">
+      <a href="#inicio"    class="mobile-menu__link"><span class="mm-num">01</span> Inicio         <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#sobre-mi"  class="mobile-menu__link"><span class="mm-num">02</span> Sobre mí       <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#skills"    class="mobile-menu__link"><span class="mm-num">03</span> Skills         <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#proyectos" class="mobile-menu__link"><span class="mm-num">04</span> Proyectos      <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#video"     class="mobile-menu__link"><span class="mm-num">05</span> Video Editing  <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#creative"  class="mobile-menu__link"><span class="mm-num">06</span> Creative Work  <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#contacto"  class="mobile-menu__link"><span class="mm-num">07</span> Contacto       <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+
+      <div class="mobile-menu__foot">
+        <p class="mobile-menu__label">Encuéntrame en</p>
+        <div class="social-row">
+          <a class="social-btn" href="https://github.com/Nimajeb-41" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Benjamín Paz">
+            <svg class="brand-ic" aria-hidden="true"><use href="#i-github"></use></svg>
+          </a>
+          <a class="social-btn" href="https://www.behance.net/BenjaminPaz123" target="_blank" rel="noopener noreferrer" aria-label="Behance de Benjamín Paz">
+            <svg class="brand-ic" aria-hidden="true"><use href="#i-behance"></use></svg>
+          </a>
+          <a class="social-btn" href="https://www.youtube.com/@elaracnido515" target="_blank" rel="noopener noreferrer" aria-label="Canal de YouTube de Benjamín Paz">
+            <svg class="brand-ic" aria-hidden="true"><use href="#i-youtube"></use></svg>
+          </a>
+          <a class="social-btn" href="https://wa.me/59897556853" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp">
+            <svg class="brand-ic" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+          </a>
+          <a class="social-btn" href="mailto:nimajneb.zap.41@gmail.com" aria-label="Enviar un email">
+            <i data-lucide="mail" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+  <main id="main">
+
+    <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+    <section class="hero" id="inicio">
+      <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero__glow" aria-hidden="true"></div>
+
+      <div class="container hero__inner">
+
+        <div class="hero__content">
+          <p class="eyebrow reveal" data-reveal-delay="0">
+            <span class="dot-live" aria-hidden="true"></span>
+            Uruguay <span aria-hidden="true">🇺🇾</span> · Disponible para proyectos
+          </p>
+
+          <h1 class="hero__title">
+            <span class="reveal-line"><span>BENJAMÍN</span></span>
+            <span class="reveal-line"><span class="grad">PAZ</span></span>
+          </h1>
+
+          <p class="hero__role reveal" data-reveal-delay="240">
+            <span class="hero__role-part">Web Developer</span>
+            <span class="hero__role-sep" aria-hidden="true">&amp;</span>
+            <span class="hero__role-part">Video Editor</span>
+          </p>
+
+          <p class="hero__desc reveal" data-reveal-delay="320">
+            Construyo experiencias digitales y contenido audiovisual combinando
+            <strong>tecnología</strong>, <strong>creatividad</strong> y aprendizaje constante.
+            Cada proyecto es una pieza más de una carrera que estoy edificando desde cero.
+          </p>
+
+          <div class="hero__actions reveal" data-reveal-delay="400">
+            <a class="btn btn--primary" href="#proyectos">
+              Ver proyectos <i data-lucide="arrow-down-right" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn--outline" href="#contacto">
+              Contactarme <i data-lucide="send" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="hero__socials reveal" data-reveal-delay="470">
+            <span class="hero__socials-label">Sígueme</span>
+            <span class="hero__socials-line" aria-hidden="true"></span>
+            <div class="social-row">
+              <a class="social-btn" href="https://github.com/Nimajeb-41" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Benjamín Paz" data-magnetic>
+                <svg class="brand-ic" aria-hidden="true"><use href="#i-github"></use></svg>
+              </a>
+              <a class="social-btn" href="https://www.behance.net/BenjaminPaz123" target="_blank" rel="noopener noreferrer" aria-label="Behance de Benjamín Paz" data-magnetic>
+                <svg class="brand-ic" aria-hidden="true"><use href="#i-behance"></use></svg>
+              </a>
+              <a class="social-btn" href="https://www.youtube.com/@elaracnido515" target="_blank" rel="noopener noreferrer" aria-label="Canal de YouTube de Benjamín Paz" data-magnetic>
+                <svg class="brand-ic" aria-hidden="true"><use href="#i-youtube"></use></svg>
+              </a>
+              <a class="social-btn" href="https://wa.me/59897556853" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp" data-magnetic>
+                <svg class="brand-ic" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Composición visual: terminal -->
+        <div class="hero__visual reveal" data-reveal-delay="300">
+          <div class="hero__orbit" aria-hidden="true"></div>
+
+          <div class="terminal" id="terminal">
+            <div class="terminal__bar">
+              <span class="terminal__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="terminal__title">benjamin@portfolio — zsh</span>
+              <i data-lucide="terminal" class="terminal__icon" aria-hidden="true"></i>
+            </div>
+            <div class="terminal__body">
+              <p class="tl"><span class="tl-prompt">➜</span> <span class="tl-dir">~/benjamin</span> <span class="tl-cmd">whoami</span></p>
+              <p class="tl tl-out">web_developer &amp; video_editor</p>
+              <p class="tl"><span class="tl-prompt">➜</span> <span class="tl-dir">~/benjamin</span> <span class="tl-cmd">cat status.log</span></p>
+              <p class="tl tl-out tl-type" aria-live="polite">
+                <span id="terminal-type"></span><span class="caret" aria-hidden="true"></span>
+              </p>
+              <p class="tl"><span class="tl-prompt">➜</span> <span class="tl-dir">~/benjamin</span> <span class="tl-cmd">stack --list</span></p>
+              <p class="tl tl-out tl-stack">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span>
+                <span>Node</span><span>PHP</span><span>MySQL</span><span>Java</span>
+                <span>Python</span><span>Linux</span>
+              </p>
+              <p class="tl"><span class="tl-prompt">➜</span> <span class="tl-dir">~/benjamin</span> <span class="caret caret--idle" aria-hidden="true"></span></p>
+            </div>
+          </div>
+
+          <div class="float-card float-card--a" aria-hidden="true">
+            <i data-lucide="code-xml"></i>
+            <div><strong>Código</strong><span>en construcción</span></div>
+          </div>
+          <div class="float-card float-card--b" aria-hidden="true">
+            <i data-lucide="clapperboard"></i>
+            <div><strong>Edición</strong><span>en movimiento</span></div>
+          </div>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#sobre-mi" aria-label="Desplazarse a la sección Sobre mí">
+        <span class="hero__scroll-line" aria-hidden="true"></span>
+        <span class="hero__scroll-text">Scroll</span>
+      </a>
+    </section>
+
+
+    <!-- ═══════════════════════ MARQUEE TECNOLÓGICO ═══════════════════════ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marquee-track">
+        <div class="marquee__group">
+          <span>HTML5</span><i>◆</i><span>CSS3</span><i>◆</i><span>JavaScript</span><i>◆</i>
+          <span>React</span><i>◆</i><span>Node.js</span><i>◆</i><span>PHP</span><i>◆</i>
+          <span>MySQL</span><i>◆</i><span>Java</span><i>◆</i><span>Python</span><i>◆</i>
+          <span>Linux</span><i>◆</i><span>Git</span><i>◆</i><span>Video Editing</span><i>◆</i>
+          <span>Motion</span><i>◆</i><span>Visual Design</span><i>◆</i>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══════════════════════════ SOBRE MÍ ═══════════════════════════ -->
+    <section class="section" id="sobre-mi">
+      <div class="container">
+
+        <header class="section__head reveal">
+          <p class="eyebrow"><span class="eyebrow__idx">01</span> Sobre mí</p>
+          <h2 class="section__title">Construyendo mi <span class="grad">carrera</span>, un proyecto a la vez.</h2>
+          <p class="section__sub">
+            No vengo con años de experiencia a cuestas. Vengo con curiosidad, constancia
+            y proyectos que crecen conmigo.
+          </p>
+        </header>
+
+        <div class="about">
+
+          <div class="about__main reveal">
+            <div class="about__card">
+              <span class="about__quote" aria-hidden="true">“</span>
+              <p>
+                Soy <strong>Benjamín Paz</strong>, tengo 18 años y soy de <strong>Uruguay</strong>.
+                Actualmente me estoy formando en el área de <strong>informática y tecnologías de la
+                información</strong>, y en paralelo desarrollo mis propios proyectos para llevar a la
+                práctica todo lo que voy aprendiendo.
+              </p>
+              <p>
+                Mi trabajo se mueve en dos terrenos que para mí son el mismo: el
+                <strong>desarrollo web</strong>, donde construyo interfaces y lógica, y la
+                <strong>edición audiovisual</strong>, donde trabajo el ritmo, la narrativa y el diseño
+                de lo que se ve. Programar y editar comparten la misma raíz: ordenar piezas hasta
+                que algo funcione y además transmita.
+              </p>
+              <p>
+                Mi objetivo es seguir creciendo como desarrollador, avanzar hacia el
+                <strong>Full Stack</strong> y continuar creando proyectos donde la tecnología y
+                la creatividad se cruzan. Esto recién empieza.
+              </p>
+            </div>
+
+            <ul class="facts" role="list">
+              <li class="fact">
+                <i data-lucide="map-pin" aria-hidden="true"></i>
+                <div><strong>Uruguay <span aria-hidden="true">🇺🇾</span></strong><span>Base de operaciones</span></div>
+              </li>
+              <li class="fact">
+                <i data-lucide="graduation-cap" aria-hidden="true"></i>
+                <div><strong>Formación</strong><span>Informática / TI · en curso</span></div>
+              </li>
+              <li class="fact">
+                <i data-lucide="code-xml" aria-hidden="true"></i>
+                <div><strong>Desarrollo</strong><span>Front-end y bases de back-end</span></div>
+              </li>
+              <li class="fact">
+                <i data-lucide="clapperboard" aria-hidden="true"></i>
+                <div><strong>Edición</strong><span>Contenido audiovisual propio</span></div>
+              </li>
+              <li class="fact">
+                <i data-lucide="rocket" aria-hidden="true"></i>
+                <div><strong>Objetivo</strong><span>Desarrollador Full Stack</span></div>
+              </li>
+              <li class="fact">
+                <i data-lucide="languages" aria-hidden="true"></i>
+                <div><strong>Idioma</strong><span>Español · inglés técnico</span></div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Timeline / roadmap -->
+          <div class="about__timeline reveal">
+            <h3 class="timeline__title">
+              <i data-lucide="git-branch" aria-hidden="true"></i> Mi recorrido
+            </h3>
+            <p class="timeline__note">Un camino en progreso, sin fechas inventadas.</p>
+
+            <ol class="timeline" role="list">
+              <li class="timeline__item is-active">
+                <span class="timeline__node" aria-hidden="true"></span>
+                <div class="timeline__body">
+                  <span class="timeline__state">En curso</span>
+                  <h4>Formación en informática</h4>
+                  <p>Bases de programación, sistemas y tecnologías de la información.</p>
+                </div>
+              </li>
+              <li class="timeline__item is-active">
+                <span class="timeline__node" aria-hidden="true"></span>
+                <div class="timeline__body">
+                  <span class="timeline__state">En curso</span>
+                  <h4>Proyectos personales</h4>
+                  <p>Llevar lo aprendido a proyectos reales, propios y públicos.</p>
+                </div>
+              </li>
+              <li class="timeline__item is-active">
+                <span class="timeline__node" aria-hidden="true"></span>
+                <div class="timeline__body">
+                  <span class="timeline__state">En curso</span>
+                  <h4>Desarrollo web</h4>
+                  <p>HTML, CSS y JavaScript como base; React y Node como siguiente paso.</p>
+                </div>
+              </li>
+              <li class="timeline__item is-active">
+                <span class="timeline__node" aria-hidden="true"></span>
+                <div class="timeline__body">
+                  <span class="timeline__state">En curso</span>
+                  <h4>Edición audiovisual</h4>
+                  <p>Narrativa, ritmo, diseño visual y producción de contenido propio.</p>
+                </div>
+              </li>
+              <li class="timeline__item is-next">
+                <span class="timeline__node" aria-hidden="true"></span>
+                <div class="timeline__body">
+                  <span class="timeline__state">Próximo</span>
+                  <h4>Especialización</h4>
+                  <p>Profundizar en un stack, buenas prácticas y arquitectura.</p>
+                </div>
+              </li>
+              <li class="timeline__item is-goal">
+                <span class="timeline__node" aria-hidden="true"></span>
+                <div class="timeline__body">
+                  <span class="timeline__state">Objetivo</span>
+                  <h4>Full Stack</h4>
+                  <p>Construir productos completos, de la interfaz a la base de datos.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════ SKILLS ═══════════════════════════ -->
+    <section class="section section--alt" id="skills">
+      <div class="container">
+
+        <header class="section__head reveal">
+          <p class="eyebrow"><span class="eyebrow__idx">02</span> Skills &amp; Technologies</p>
+          <h2 class="section__title">Las herramientas con las que <span class="grad">trabajo y aprendo</span>.</h2>
+          <p class="section__sub">
+            Sin porcentajes inventados. Tecnologías que uso, practico y sigo explorando
+            mientras avanzo en mi formación.
+          </p>
+        </header>
+
+        <div class="skills">
+
+          <article class="skill-group reveal">
+            <header class="skill-group__head">
+              <span class="skill-group__icon"><i data-lucide="code-xml" aria-hidden="true"></i></span>
+              <div>
+                <h3>Desarrollo</h3>
+                <p>Lenguajes y tecnologías del lado del cliente y del servidor.</p>
+              </div>
+            </header>
+            <ul class="chips" role="list">
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">&lt;/&gt;</span>HTML5</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">#</span>CSS3</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">JS</span>JavaScript</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">⚛</span>React</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">⬢</span>Node.js</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">php</span>PHP</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">◈</span>MySQL</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">J</span>Java</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">Py</span>Python</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">▲</span>Linux</li>
+            </ul>
+          </article>
+
+          <article class="skill-group reveal" data-reveal-delay="80">
+            <header class="skill-group__head">
+              <span class="skill-group__icon"><i data-lucide="wrench" aria-hidden="true"></i></span>
+              <div>
+                <h3>Herramientas</h3>
+                <p>Control de versiones y entornos de trabajo del día a día.</p>
+              </div>
+            </header>
+            <ul class="chips" role="list">
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">⑂</span>Git</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">◉</span>GitHub</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">▣</span>VS Code</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">IJ</span>IntelliJ IDEA</li>
+            </ul>
+          </article>
+
+          <article class="skill-group reveal" data-reveal-delay="160">
+            <header class="skill-group__head">
+              <span class="skill-group__icon skill-group__icon--warm"><i data-lucide="clapperboard" aria-hidden="true"></i></span>
+              <div>
+                <h3>Creatividad</h3>
+                <p>Todo lo que ocurre cuando el código deja paso a la imagen.</p>
+              </div>
+            </header>
+            <ul class="chips chips--warm" role="list">
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">▶</span>Video Editing</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">≈</span>Motion</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">◑</span>Visual Design</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">✦</span>Content Creation</li>
+            </ul>
+          </article>
+
+        </div>
+
+        <p class="skills__note reveal">
+          <i data-lucide="info" aria-hidden="true"></i>
+          Prefiero no publicar barras de porcentaje: no dicen nada real sobre lo que alguien
+          sabe hacer. Si quieres saber mi nivel exacto en algo,
+          <a href="#contacto">pregúntame directamente</a>.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════ PROYECTOS ═══════════════════════════ -->
+    <section class="section" id="proyectos">
+      <div class="container">
+
+        <header class="section__head reveal">
+          <p class="eyebrow"><span class="eyebrow__idx">03</span> Featured Projects</p>
+          <h2 class="section__title">Proyectos que <span class="grad">construyo</span> mientras aprendo.</h2>
+          <p class="section__sub">
+            Trabajo real, en distintas etapas. Lo que está terminado se muestra; lo que
+            está en construcción, también — porque el proceso es parte del portfolio.
+          </p>
+        </header>
+
+        <div class="projects">
+
+          <!-- Proyecto 1 · real -->
+          <article class="project project--wide reveal">
+            <div class="project__visual">
+              <div class="project__art project__art--arthro" aria-hidden="true">
+                <span class="project__art-glyph">🕷</span>
+                <span class="project__art-ring"></span>
+                <span class="project__art-ring project__art-ring--2"></span>
+              </div>
+              <span class="project__badge project__badge--live">
+                <i data-lucide="circle-check" aria-hidden="true"></i> Publicado
+              </span>
+            </div>
+            <div class="project__body">
+              <p class="project__idx">Proyecto 01</p>
+              <h3 class="project__title">Copa Artrópoda</h3>
+              <p class="project__desc">
+                Proyecto web interactivo desarrollado con HTML, CSS y JavaScript.
+                Une el desarrollo front-end con la temática de divulgación sobre artrópodos
+                que también trabajo en vídeo.
+              </p>
+              <ul class="project__tags" role="list">
+                <li>HTML5</li><li>CSS3</li><li>JavaScript</li>
+              </ul>
+              <div class="project__actions">
+                <a class="btn btn--sm btn--primary" href="https://github.com/Nimajeb-41/Copa_Artropoda" target="_blank" rel="noopener noreferrer">
+                  <svg class="brand-ic" aria-hidden="true"><use href="#i-github"></use></svg>
+                  Ver código
+                </a>
+                <a class="btn btn--sm btn--ghost" href="https://github.com/Nimajeb-41/Copa_Artropoda" target="_blank" rel="noopener noreferrer">
+                  Repositorio <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyecto 2 · real (este sitio) -->
+          <article class="project reveal" data-reveal-delay="80">
+            <div class="project__visual">
+              <div class="project__art project__art--portfolio" aria-hidden="true">
+                <span class="mini-window">
+                  <span class="mini-window__bar"><i></i><i></i><i></i></span>
+                  <span class="mini-window__line"></span>
+                  <span class="mini-window__line mini-window__line--short"></span>
+                  <span class="mini-window__line mini-window__line--tiny"></span>
+                </span>
+              </div>
+              <span class="project__badge project__badge--wip">
+                <i data-lucide="hammer" aria-hidden="true"></i> En desarrollo
+              </span>
+            </div>
+            <div class="project__body">
+              <p class="project__idx">Proyecto 02</p>
+              <h3 class="project__title">Portfolio Personal</h3>
+              <p class="project__desc">
+                Este mismo sitio: diseño y desarrollo propios, sin plantillas ni frameworks.
+                HTML semántico, sistema de diseño en CSS puro, animaciones con
+                IntersectionObserver y galería de vídeo con modal accesible.
+              </p>
+              <ul class="project__tags" role="list">
+                <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Accesibilidad</li>
+              </ul>
+              <div class="project__actions">
+                <a class="btn btn--sm btn--ghost" href="https://github.com/Nimajeb-41" target="_blank" rel="noopener noreferrer">
+                  <svg class="brand-ic" aria-hidden="true"><use href="#i-github"></use></svg>
+                  Mi GitHub
+                </a>
+                <span class="project__hint"><i data-lucide="clock" aria-hidden="true"></i> Repositorio próximamente</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyecto 3 · placeholder declarado -->
+          <article class="project project--placeholder reveal" data-reveal-delay="160">
+            <div class="project__visual">
+              <div class="project__art project__art--empty" aria-hidden="true">
+                <i data-lucide="layout-dashboard"></i>
+              </div>
+              <span class="project__badge project__badge--soon">
+                <i data-lucide="hammer" aria-hidden="true"></i> Proyecto en desarrollo
+              </span>
+            </div>
+            <div class="project__body">
+              <p class="project__idx">Proyecto 03</p>
+              <h3 class="project__title">Espacio reservado</h3>
+              <p class="project__desc">
+                Este bloque está preparado para el próximo proyecto. Cuando esté listo,
+                ocupará este lugar con su imagen, descripción, tecnologías y enlaces.
+              </p>
+              <ul class="project__tags" role="list">
+                <li>Por definir</li>
+              </ul>
+              <div class="project__actions">
+                <span class="project__hint"><i data-lucide="loader" aria-hidden="true"></i> En construcción</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyecto 4 · placeholder declarado -->
+          <article class="project project--placeholder reveal" data-reveal-delay="240">
+            <div class="project__visual">
+              <div class="project__art project__art--empty" aria-hidden="true">
+                <i data-lucide="database"></i>
+              </div>
+              <span class="project__badge project__badge--soon">
+                <i data-lucide="hammer" aria-hidden="true"></i> Proyecto en desarrollo
+              </span>
+            </div>
+            <div class="project__body">
+              <p class="project__idx">Proyecto 04</p>
+              <h3 class="project__title">Espacio reservado</h3>
+              <p class="project__desc">
+                Reservado para un proyecto con back-end y base de datos, el siguiente paso
+                natural en el camino hacia Full Stack.
+              </p>
+              <ul class="project__tags" role="list">
+                <li>Por definir</li>
+              </ul>
+              <div class="project__actions">
+                <span class="project__hint"><i data-lucide="loader" aria-hidden="true"></i> En construcción</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="projects__more reveal">
+          <a class="btn btn--outline" href="https://github.com/Nimajeb-41?tab=repositories" target="_blank" rel="noopener noreferrer">
+            <svg class="brand-ic" aria-hidden="true"><use href="#i-github"></use></svg>
+            Ver todos mis repositorios
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════ VIDEO EDITING ═══════════════════════ -->
+    <section class="section section--cinema" id="video">
+      <div class="cinema-bars" aria-hidden="true"><span></span><span></span></div>
+
+      <div class="container">
+
+        <header class="section__head reveal">
+          <p class="eyebrow eyebrow--warm"><span class="eyebrow__idx">04</span> Video Editing</p>
+          <h2 class="section__title">Más allá del <span class="grad grad--warm">código</span>.</h2>
+          <p class="section__sub">
+            También trabajo con contenido audiovisual. Aquí el lenguaje cambia: en vez de
+            funciones y componentes, hay ritmo, narrativa e imagen.
+          </p>
+        </header>
+
+        <div class="cinema-intro">
+          <div class="cinema-intro__text reveal">
+            <p>
+              La edición es la otra mitad de lo que hago. Es donde decido qué se ve, cuánto dura
+              y en qué orden aparece — las mismas decisiones estructurales que tomo al programar,
+              pero contadas con imagen y sonido.
+            </p>
+            <p>
+              Todo lo que se muestra a continuación son <strong>proyectos propios</strong>: contenido
+              que escribo, edito y publico en mi canal, principalmente sobre divulgación científica
+              y biología.
+            </p>
+          </div>
+
+          <ul class="cinema-skills reveal" role="list" data-reveal-delay="80">
+            <li><i data-lucide="scissors" aria-hidden="true"></i><div><strong>Edición</strong><span>Corte, estructura y limpieza</span></div></li>
+            <li><i data-lucide="audio-waveform" aria-hidden="true"></i><div><strong>Ritmo</strong><span>Tempo y respiración del montaje</span></div></li>
+            <li><i data-lucide="book-open" aria-hidden="true"></i><div><strong>Narrativa</strong><span>Guion e hilo conductor</span></div></li>
+            <li><i data-lucide="palette" aria-hidden="true"></i><div><strong>Diseño</strong><span>Composición y tipografía en pantalla</span></div></li>
+            <li><i data-lucide="music" aria-hidden="true"></i><div><strong>Música</strong><span>Ambientación y sincronía</span></div></li>
+            <li><i data-lucide="sparkles" aria-hidden="true"></i><div><strong>Efectos</strong><span>Apoyo visual, nunca decoración</span></div></li>
+          </ul>
+        </div>
+
+        <!-- ── Galería ── -->
+        <div class="gallery" id="gallery">
+
+          <div class="gallery__head reveal">
+            <h3 class="gallery__title">
+              <i data-lucide="film" aria-hidden="true"></i>
+              Galería de vídeos
+              <span class="gallery__count" id="gallery-count"></span>
+            </h3>
+
+            <div class="gallery__filters" id="gallery-filters" role="group" aria-label="Filtrar vídeos por categoría">
+              <!-- Los filtros se generan desde js/data.js -->
+            </div>
+          </div>
+
+          <div class="gallery__grid" id="gallery-grid" aria-live="polite">
+            <!-- Las tarjetas de vídeo se generan desde js/data.js + js/video.js -->
+          </div>
+
+          <p class="gallery__empty" id="gallery-empty" hidden>
+            No hay vídeos en esta categoría todavía.
+          </p>
+
+          <div class="gallery__more">
+            <button class="btn btn--outline" id="gallery-more" type="button">
+              Ver todos los vídeos <i data-lucide="chevron-down" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <noscript>
+            <p class="gallery__noscript">
+              La galería de vídeos necesita JavaScript activado. Mientras tanto, puedes ver
+              todo el contenido en
+              <a href="https://www.youtube.com/@elaracnido515" target="_blank" rel="noopener noreferrer">mi canal de YouTube</a>.
+            </p>
+          </noscript>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════ CREATIVE WORK ═══════════════════════ -->
+    <section class="section" id="creative">
+      <div class="container">
+
+        <header class="section__head reveal">
+          <p class="eyebrow"><span class="eyebrow__idx">05</span> Creative Work</p>
+          <h2 class="section__title">Dónde vive el resto de mi <span class="grad">trabajo</span>.</h2>
+        </header>
+
+        <div class="platforms">
+
+          <a class="platform platform--behance reveal" href="https://www.behance.net/BenjaminPaz123" target="_blank" rel="noopener noreferrer">
+            <span class="platform__glow" aria-hidden="true"></span>
+            <span class="platform__icon"><svg class="brand-ic" aria-hidden="true"><use href="#i-behance"></use></svg></span>
+            <h3 class="platform__name">Behance</h3>
+            <p class="platform__desc">Explora mis proyectos visuales y trabajos creativos.</p>
+            <span class="btn btn--sm btn--ghost platform__cta">
+              Visitar Behance <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+            </span>
+          </a>
+
+          <a class="platform platform--youtube reveal" data-reveal-delay="100" href="https://www.youtube.com/@elaracnido515" target="_blank" rel="noopener noreferrer">
+            <span class="platform__glow" aria-hidden="true"></span>
+            <span class="platform__icon"><svg class="brand-ic" aria-hidden="true"><use href="#i-youtube"></use></svg></span>
+            <h3 class="platform__name">YouTube</h3>
+            <p class="platform__desc">Contenido audiovisual, proyectos y creación de contenido.</p>
+            <span class="btn btn--sm btn--ghost platform__cta">
+              Visitar YouTube <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+            </span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════ CONTACTO ═══════════════════════════ -->
+    <section class="section section--contact" id="contacto">
+      <div class="contact-glow" aria-hidden="true"></div>
+
+      <div class="container">
+        <header class="section__head section__head--center reveal">
+          <p class="eyebrow"><span class="eyebrow__idx">06</span> Contacto</p>
+          <h2 class="section__title section__title--xl">¿Construimos <span class="grad">algo</span>?</h2>
+          <p class="section__sub">
+            Si tienes un proyecto, una idea o simplemente quieres ponerte en contacto, hablemos.
+            Respondo a todo.
+          </p>
+        </header>
+
+        <ul class="contact-cards" role="list">
+
+          <li class="reveal">
+            <a class="ccard ccard--wa" href="https://wa.me/59897556853?text=Hola%20Benjam%C3%ADn%2C%20vi%20tu%20portfolio%20y%20me%20gustar%C3%ADa%20hablar%20contigo." target="_blank" rel="noopener noreferrer" data-magnetic>
+              <span class="ccard__icon"><svg class="brand-ic" aria-hidden="true"><use href="#i-whatsapp"></use></svg></span>
+              <span class="ccard__meta">
+                <strong>WhatsApp</strong>
+                <span>+598 97 556 853</span>
+              </span>
+              <i data-lucide="arrow-up-right" class="ccard__arrow" aria-hidden="true"></i>
+            </a>
+          </li>
+
+          <li class="reveal" data-reveal-delay="70">
+            <a class="ccard ccard--mail" href="mailto:nimajneb.zap.41@gmail.com?subject=Contacto%20desde%20tu%20portfolio" data-magnetic>
+              <span class="ccard__icon"><i data-lucide="mail" aria-hidden="true"></i></span>
+              <span class="ccard__meta">
+                <strong>Email</strong>
+                <span>nimajneb.zap.41@gmail.com</span>
+              </span>
+              <i data-lucide="arrow-up-right" class="ccard__arrow" aria-hidden="true"></i>
+            </a>
+          </li>
+
+          <li class="reveal" data-reveal-delay="140">
+            <a class="ccard ccard--gh" href="https://github.com/Nimajeb-41" target="_blank" rel="noopener noreferrer" data-magnetic>
+              <span class="ccard__icon"><svg class="brand-ic" aria-hidden="true"><use href="#i-github"></use></svg></span>
+              <span class="ccard__meta">
+                <strong>GitHub</strong>
+                <span>@Nimajeb-41</span>
+              </span>
+              <i data-lucide="arrow-up-right" class="ccard__arrow" aria-hidden="true"></i>
+            </a>
+          </li>
+
+          <li class="reveal" data-reveal-delay="210">
+            <a class="ccard ccard--be" href="https://www.behance.net/BenjaminPaz123" target="_blank" rel="noopener noreferrer" data-magnetic>
+              <span class="ccard__icon"><svg class="brand-ic" aria-hidden="true"><use href="#i-behance"></use></svg></span>
+              <span class="ccard__meta">
+                <strong>Behance</strong>
+                <span>BenjaminPaz123</span>
+              </span>
+              <i data-lucide="arrow-up-right" class="ccard__arrow" aria-hidden="true"></i>
+            </a>
+          </li>
+
+          <li class="reveal" data-reveal-delay="280">
+            <a class="ccard ccard--yt" href="https://www.youtube.com/@elaracnido515" target="_blank" rel="noopener noreferrer" data-magnetic>
+              <span class="ccard__icon"><svg class="brand-ic" aria-hidden="true"><use href="#i-youtube"></use></svg></span>
+              <span class="ccard__meta">
+                <strong>YouTube</strong>
+                <span>@elaracnido515</span>
+              </span>
+              <i data-lucide="arrow-up-right" class="ccard__arrow" aria-hidden="true"></i>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+
+      <div class="footer__brand">
+        <a class="brand brand--footer" href="#inicio" aria-label="Volver al inicio">
+          <span class="brand__mark" aria-hidden="true"><span>B</span><span>P</span></span>
+          <span class="brand__text">
+            <strong>Benjamín Paz</strong>
+            <small>Web Developer &amp; Video Editor</small>
+          </span>
+        </a>
+        <p class="footer__loc"><i data-lucide="map-pin" aria-hidden="true"></i> Uruguay <span aria-hidden="true">🇺🇾</span></p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Navegación del pie de página">
+        <h2 class="footer__h">Secciones</h2>
+        <ul role="list">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#video">Video Editing</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__social">
+        <h2 class="footer__h">Enlaces</h2>
+        <ul role="list">
+          <li><a href="https://github.com/Nimajeb-41" target="_blank" rel="noopener noreferrer">
+            <svg class="brand-ic" aria-hidden="true"><use href="#i-github"></use></svg> GitHub</a></li>
+          <li><a href="https://www.behance.net/BenjaminPaz123" target="_blank" rel="noopener noreferrer">
+            <svg class="brand-ic" aria-hidden="true"><use href="#i-behance"></use></svg> Behance</a></li>
+          <li><a href="https://www.youtube.com/@elaracnido515" target="_blank" rel="noopener noreferrer">
+            <svg class="brand-ic" aria-hidden="true"><use href="#i-youtube"></use></svg> YouTube</a></li>
+          <li><a href="https://wa.me/59897556853" target="_blank" rel="noopener noreferrer">
+            <svg class="brand-ic" aria-hidden="true"><use href="#i-whatsapp"></use></svg> WhatsApp</a></li>
+          <li><a href="mailto:nimajneb.zap.41@gmail.com">
+            <i data-lucide="mail" aria-hidden="true"></i> Email</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> Benjamín Paz</p>
+      <p class="footer__made">Diseñado y desarrollado desde cero <span aria-hidden="true">·</span> HTML, CSS y JavaScript</p>
+    </div>
+  </footer>
+
+
+  <!-- Botón volver arriba -->
+  <button class="to-top" id="to-top" type="button" aria-label="Volver al inicio de la página">
+    <i data-lucide="arrow-up" aria-hidden="true"></i>
+  </button>
+
+
+  <!-- ═══════════════════════ MODAL DE VÍDEO ═══════════════════════ -->
+  <div class="modal" id="video-modal" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true"
+         aria-labelledby="modal-title" aria-describedby="modal-desc">
+
+      <button class="modal__close" id="modal-close" type="button" aria-label="Cerrar el reproductor de vídeo">
+        <i data-lucide="x" aria-hidden="true"></i>
+      </button>
+
+      <div class="modal__player">
+        <video id="modal-video" controls playsinline preload="metadata"
+               aria-label="Reproductor de vídeo"></video>
+      </div>
+
+      <div class="modal__info">
+        <div class="modal__info-main">
+          <p class="modal__cat" id="modal-cat"></p>
+          <h2 class="modal__title" id="modal-title"></h2>
+          <p class="modal__desc" id="modal-desc"></p>
+        </div>
+        <dl class="modal__meta" id="modal-meta"></dl>
+      </div>
+
+      <div class="modal__nav">
+        <button class="modal__nav-btn" id="modal-prev" type="button">
+          <i data-lucide="chevron-left" aria-hidden="true"></i> Anterior
+        </button>
+        <span class="modal__pos" id="modal-pos" aria-live="polite"></span>
+        <button class="modal__nav-btn" id="modal-next" type="button">
+          Siguiente <i data-lucide="chevron-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════ SCRIPTS ═══════════════════════════ -->
+  <!-- Lucide Icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+  <script src="js/data.js" defer></script>
+  <script src="js/theme.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/video.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
