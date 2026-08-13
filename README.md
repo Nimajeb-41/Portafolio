@@ -420,10 +420,6 @@ Pendiente de verificar con lectores de pantalla reales (NVDA / VoiceOver).
 
 ## Decisiones técnicas
 
-**Un solo `index.html`.** El recorrido es una narrativa continua: quién soy →
-qué sé → qué he hecho → cómo contactarme. Partirlo en páginas rompería la
-lectura y añadiría cargas innecesarias.
-
 **Vídeos generados desde datos, proyectos escritos en HTML.** La galería crece
 constantemente y merece un array editable; los proyectos son pocos, son el
 contenido principal y se benefician de estar en el HTML para SEO y para
@@ -444,10 +440,6 @@ con un servidor estático. Sin `npm install`, sin build, sin configuración.
 Estos datos se dejaron deliberadamente vacíos para no publicar información
 inventada. Rellénalos cuando quieras:
 
-- [ ] **`uno-mas-uno.mp4` no tiene imagen.** El archivo decodifica correctamente,
-      pero **todos sus fotogramas son negros**: solo contiene audio. Su portada
-      es un marcador provisional que lo indica de forma explícita. Si vuelves a
-      exportar ese vídeo con imagen, sustituye el `.mp4` y regenera la portada.
 - [ ] **Fechas de los vídeos** — campo `date` en `js/data.js` (ahora `null`).
 - [ ] **Software de edición** — campo `software` en `js/data.js` (ahora `null`).
 - [ ] **Enlaces a YouTube por vídeo** — campo `youtube` en `js/data.js`.
