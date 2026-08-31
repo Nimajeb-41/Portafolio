@@ -68,6 +68,15 @@
   .footer__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .footer__brand { grid-column: 1 / -1; }
 
+  /* Retrato: pasa a fila, con la foto a tamaño contenido */
+  .intro { grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 2rem; }
+
+  /* CV: una columna; la maqueta del documento pasa debajo y se centra */
+  .cv__inner { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+  .cv__paper { order: -1; }
+  .cv__sheet { width: min(240px, 100%); transform: rotate(-2deg); }
+  .cv:hover .cv__sheet { transform: rotate(-1deg) translateY(-4px); }
+
   /* El halo del cursor no aporta nada en táctil */
   .cursor-glow { display: none; }
 }
@@ -98,6 +107,19 @@
   }
 
   .contact-cards > li:first-child { grid-column: auto; }
+
+  /* Retrato encima del texto, ya no en columna lateral */
+  .intro { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .portrait { max-width: 380px; margin-inline: auto; }
+
+  .certs { grid-template-columns: minmax(0, 1fr); }
+
+  /* Lightbox: las flechas se apoyan sobre la imagen */
+  .lightbox__dialog { flex-direction: column; gap: 1rem; }
+  .lightbox__nav { position: absolute; top: 40%; }
+  .lightbox__nav--prev { left: -.25rem; }
+  .lightbox__nav--next { right: -.25rem; }
+  .lightbox__figure img { max-height: calc(100dvh - 13rem); }
 }
 
 
@@ -193,6 +215,33 @@
   .modal__nav-btn { padding: .45rem .7rem; font-size: .8rem; }
   .modal__close { top: .6rem; right: .6rem; width: 36px; height: 36px; }
 
+  /* — Retrato, certificados y CV — */
+  .portrait { max-width: 100%; }
+  .portrait__img { aspect-ratio: 4 / 4.4; }
+  .intro { padding-bottom: 2.25rem; margin-bottom: 2.25rem; }
+  .intro__points { gap: .5rem; }
+  .intro__points li { flex: 1 1 100%; }
+
+  .cert { padding: 1.35rem 1.2rem; gap: 1rem; }
+  .cert__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cert__actions .btn { flex: 1 1 auto; justify-content: center; }
+
+  .cv { padding-block: 3.5rem; }
+  .cv__title { letter-spacing: -.04em; }
+  .cv__actions { gap: .6rem; }
+  .cv__actions .btn { flex: 1 1 100%; justify-content: center; }
+  .btn--xl { padding: .95rem 1.4rem; font-size: .98rem; }
+  .cv__meta { gap: .75rem 1.1rem; }
+  .cv__sheet { width: min(200px, 62%); padding: 1.4rem 1.1rem; gap: .5rem; }
+  .cv__sheet-badge { right: -10px; bottom: 18px; }
+
+  /* — Capturas — */
+  .project__gallery { gap: .4rem; }
+  .lightbox { padding: .5rem; }
+  .lightbox__close { top: 0; right: 0; width: 38px; height: 38px; }
+  .lightbox__nav { width: 40px; height: 40px; }
+  .lightbox__caption { font-size: var(--fs-xs); }
+
   /* — Footer — */
   .footer__inner { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
   .footer__bottom { flex-direction: column; align-items: flex-start; }
@@ -261,6 +310,18 @@
   .vcard__play-btn { transform: scale(.78); opacity: .92; }
   .vcard__expand { padding: .5rem .8rem; }
 
+  /* Sin hover no hay forma de descubrir que la captura amplía: se muestra
+     siempre, en pequeño y en una esquina para no tapar la imagen. */
+  .project__zoom { opacity: 1; place-items: end start; padding: .6rem; }
+  .project__zoom i { width: 34px; height: 34px; padding: 9px; transform: none; }
+  .project__thumb::after { opacity: 0; }
+  .portrait:hover .portrait__frame,
+  .portrait:hover .portrait__img,
+  .cv:hover .cv__sheet,
+  .cert:hover,
+  .intro__points li:hover,
+  .project__thumb:hover { transform: none; }
+
   .skill-group::after, .platform::after { display: none; }
 }
 
@@ -269,8 +330,11 @@
 
 @media print {
   .nav, .mobile-menu, .to-top, .scroll-progress, .cursor-glow,
-  .backdrop, .hero__canvas, .hero__glow, .marquee, .modal,
-  .hero__scroll, .gallery__filters, .gallery__more { display: none !important; }
+  .backdrop, .hero__canvas, .hero__glow, .marquee, .modal, .lightbox,
+  .hero__scroll, .gallery__filters, .gallery__more,
+  .cv__bg, .cv__paper, .project__zoom { display: none !important; }
+
+  .cv { background: #fff !important; color: #000 !important; border-block: 1px solid #ccc; }
 
   :root { --bg: #fff; --surface: #fff; --text: #000; --text-2: #333; --text-3: #555; }
 

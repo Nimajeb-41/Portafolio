@@ -34,10 +34,11 @@ galería de vídeo están construidos desde cero para este proyecto.
 
 ## Sobre Benjamín Paz
 
-Benjamín Paz tiene 18 años y es de Uruguay. Actualmente se está formando en el
-área de **informática y tecnologías de la información**, y en paralelo desarrolla
-proyectos propios mientras amplía sus conocimientos en programación, desarrollo
-web, herramientas digitales y edición audiovisual.
+Benjamín Paz tiene 18 años y es de Uruguay. Está cursando el
+**Bachillerato Tecnológico en Tecnologías de la Información**, del que egresa
+dentro de tres meses, y en paralelo desarrolla proyectos propios mientras
+amplía sus conocimientos en programación, desarrollo web, herramientas
+digitales y edición audiovisual.
 
 Su objetivo profesional es seguir creciendo como desarrollador, avanzar hacia el
 **Full Stack** y continuar creando proyectos donde la tecnología y la creatividad
@@ -49,6 +50,7 @@ se cruzan.
 |---|---|
 | WhatsApp | [+598 97 556 853](https://wa.me/59897556853) |
 | Email | [nimajneb.zap.41@gmail.com](mailto:nimajneb.zap.41@gmail.com) |
+| LinkedIn | [Benjamín Paz](https://www.linkedin.com/in/benjam%C3%ADn-paz-50205439b) |
 | GitHub | [@Nimajeb-41](https://github.com/Nimajeb-41) |
 | Behance | [BenjaminPaz123](https://www.behance.net/BenjaminPaz123) |
 | YouTube | [@elaracnido515](https://www.youtube.com/@elaracnido515) |
@@ -76,11 +78,14 @@ se cruzan.
 - Todo se desactiva con `prefers-reduced-motion: reduce`
 
 **Contenido**
-- Sección **Sobre mí** con datos rápidos y una *timeline* de recorrido
+- Sección **Sobre mí** con retrato, datos rápidos y una *timeline* de recorrido
   profesional, sin fechas inventadas
 - **Skills** agrupadas por categoría, sin barras de porcentaje falsas
-- **Featured Projects** con proyectos reales y espacios reservados
-  claramente marcados como *en desarrollo*
+- **Certificados** con los PDFs originales, que se pueden ver y descargar
+- **Featured Projects**: cinco proyectos reales con capturas de cada uno
+  ejecutándose, y un *lightbox* accesible para ampliarlas
+- Sección de **CV** a ancho completo, que se mantiene oscura en los dos temas
+  para separarse visualmente del resto de la página
 - **Video Editing** con galería filtrable por categoría y paginación
 - **Modal de vídeo accesible**: `role="dialog"`, `aria-modal`, foco atrapado,
   cierre con `ESC` o clic fuera, navegación anterior/siguiente con flechas y
@@ -131,7 +136,14 @@ miportafolioweb/
 ├── index.html                  Página única con todas las secciones
 │
 ├── assets/
-│   ├── images/                 Imágenes generales y og-image
+│   ├── docs/                   PDFs descargables
+│   │   ├── CV-Benjamin-Paz.pdf
+│   │   ├── certificado-ceibal-desarrollo-web.pdf
+│   │   └── certificado-ceibal-python.pdf
+│   ├── images/
+│   │   ├── benjamin-paz.jpg    Retrato de la sección "Sobre mí"
+│   │   ├── og-image.jpg        Imagen para redes sociales
+│   │   └── projects/           Capturas de cada proyecto
 │   ├── videos/                 Archivos .mp4 de la galería
 │   │   └── posters/            Portadas .jpg de cada vídeo
 │   └── icons/
@@ -148,6 +160,7 @@ miportafolioweb/
 │   ├── navigation.js           Navbar, scroll spy, menú móvil, back-to-top
 │   ├── animations.js           IntersectionObserver, canvas, cursor, terminal
 │   ├── video.js                Galería filtrable y modal accesible
+│   ├── lightbox.js             Vista ampliada de las capturas de proyecto
 │   └── main.js                 Inicialización general
 │
 ├── projects/                   Páginas de detalle por proyecto (opcional)
@@ -291,6 +304,100 @@ Si el proyecto merece una página propia, usa `projects/_template.html`
 
 ---
 
+## Cómo añadir capturas a un proyecto
+
+Las capturas se amplían en un *lightbox* al hacer clic. Para que una imagen
+entre en él solo hacen falta tres atributos — `js/lightbox.js` no se toca:
+
+```html
+<button type="button"
+        data-gallery="prisma"
+        data-src="assets/images/projects/prisma-nueva.png"
+        data-caption="Texto que se muestra bajo la imagen ampliada">
+  <img src="assets/images/projects/prisma-nueva.png" alt="Describe qué se ve." loading="lazy">
+</button>
+```
+
+Todas las capturas que comparten el mismo `data-gallery` forman una galería y
+se recorren con las flechas del teclado o los botones anterior / siguiente.
+La captura principal usa la clase `project__shot` y las pequeñas de debajo
+`project__thumb`.
+
+**Cómo se generaron las capturas actuales** (por si hay que rehacerlas):
+
+| Proyecto | Método |
+|---|---|
+| PRISMA | El ejecutable trae flags propias: `prisma.exe --state play --capture ruta.png` |
+| Football Tournament Manager | Script Qt que abre la app y usa `QWidget.grab()` por cada vista |
+| ImageForge | Playwright contra el servidor de desarrollo, a 1600 × 1000 |
+
+---
+
+## Cómo añadir un certificado
+
+Copia el PDF a `assets/docs/` y duplica un bloque `<li class="cert">` dentro de
+`<section id="certificados">` en `index.html`:
+
+```html
+<li class="cert reveal">
+  <div class="cert__top">
+    <span class="cert__seal" aria-hidden="true"><i data-lucide="award"></i></span>
+    <div class="cert__meta">
+      <p class="cert__issuer">Nombre del emisor</p>
+      <h3 class="cert__title">Nombre del curso</h3>
+    </div>
+  </div>
+  <dl class="cert__facts">
+    <div><dt>Carga horaria</dt><dd>30 horas</dd></div>
+    <div><dt>Evaluación</dt><dd>Aprobada</dd></div>
+    <div><dt>Emisor</dt><dd>Emisor · País</dd></div>
+  </dl>
+  <div class="cert__actions">
+    <a class="btn btn--sm btn--primary" href="assets/docs/mi-certificado.pdf"
+       target="_blank" rel="noopener noreferrer">
+      <i data-lucide="eye" aria-hidden="true"></i> Ver certificado
+    </a>
+    <a class="btn btn--sm btn--ghost" href="assets/docs/mi-certificado.pdf"
+       download="Certificado-Nombre-Benjamin-Paz.pdf">
+      <i data-lucide="download" aria-hidden="true"></i> Descargar
+    </a>
+  </div>
+</li>
+```
+
+> ⚠️ **Antes de publicar, revisa qué datos contienen los PDFs.**
+> Las dos constancias de Ceibal incluyen el **número de cédula de identidad**
+> en el texto del documento. Al subir el sitio a internet ese dato queda
+> público y indexable. Si prefieres evitarlo, sube versiones con el número
+> tapado, o quita los certificados y deja solo su descripción.
+
+---
+
+## Cómo actualizar el CV
+
+Sustituye `assets/docs/CV-Benjamin-Paz.pdf` manteniendo el mismo nombre: los
+dos botones de la sección `#cv` seguirán funcionando sin tocar el HTML.
+
+Si cambias el número de páginas o el peso, actualiza también la lista
+`cv__meta` de `index.html`, que hoy dice «PDF · 1 página» y «620 KB».
+
+---
+
+## Cómo cambiar la foto
+
+Sustituye `assets/images/benjamin-paz.jpg`. Recomendaciones:
+
+- **Proporción**: el marco recorta a 4:5 (vertical). Una foto horizontal
+  también sirve, pero se recortará por los lados.
+- **Encuadre**: el recorte se ancla con `object-position: 50% 22%` en
+  `css/style.css` (sección 18). Si la cara queda descentrada, ajusta ese
+  segundo valor: menos porcentaje sube el encuadre, más lo baja.
+- **Tamaño**: al menos 1000 px de ancho; por debajo se ve blanda en pantallas
+  de alta densidad.
+- Actualiza el atributo `alt` y los `width`/`height` del `<img>` en `index.html`.
+
+---
+
 ## Cómo cambiar la información personal
 
 | Qué | Dónde |
@@ -307,10 +414,14 @@ Si el proyecto merece una página propia, usa `projects/_template.html`
 ```
 https://wa.me/59897556853
 mailto:nimajneb.zap.41@gmail.com
+https://www.linkedin.com/in/benjam%C3%ADn-paz-50205439b
 https://github.com/Nimajeb-41
 https://www.behance.net/BenjaminPaz123
 https://www.youtube.com/@elaracnido515
 ```
+
+> El enlace de LinkedIn lleva `%C3%AD` porque la URL contiene una «í». Es la
+> forma codificada correcta: no la sustituyas por la letra sin acento.
 
 **Añadir una skill nueva:**
 
@@ -327,7 +438,8 @@ https://www.youtube.com/@elaracnido515
 | Favicon | `assets/icons/favicon.svg` | Monograma editable como texto |
 | Imagen para redes (Open Graph) | `assets/images/og-image.jpg` | 1200 × 630 px |
 | Portadas de vídeo | `assets/videos/posters/<id>.jpg` | 16:9, 1024 × 576 px |
-| Capturas de proyecto | `assets/images/` | Referenciar con `<img>` en la tarjeta |
+| Capturas de proyecto | `assets/images/projects/` | 16:9; se recortan por arriba |
+| Retrato | `assets/images/benjamin-paz.jpg` | Se recorta a 4:5 · ver sección propia |
 
 **Consejo de peso:** exporta las portadas en JPG a calidad ~75 y por debajo de
 200 KB. Las etiquetas ya llevan `loading="lazy"` y `decoding="async"`.
@@ -445,8 +557,20 @@ inventada. Rellénalos cuando quieras:
 - [ ] **Enlaces a YouTube por vídeo** — campo `youtube` en `js/data.js`.
 - [ ] **Descripciones de los vídeos** — son un borrador redactado a partir del
       título de cada uno; sustitúyelas por tu propio texto.
-- [ ] **Proyectos 03 y 04** — marcados como *Proyecto en desarrollo*.
-- [ ] **Repositorio del portfolio** — la tarjeta indica *Repositorio próximamente*.
+- [ ] **Cédula de identidad en los certificados.** Los dos PDFs de Ceibal
+      incluyen el número de CI en su texto. Al publicar el sitio ese dato queda
+      accesible. Decide si los subes tal cual, con el número tapado, o si dejas
+      solo la descripción del curso sin el archivo.
+- [ ] **Repositorio de PRISMA** — hoy la tarjeta no enlaza a ninguno.
+- [ ] **Repositorio de Football Tournament Manager** — indica *Sin repositorio
+      público todavía*.
+- [ ] **Dominio y publicación de ImageForge** — la tarjeta lo dice
+      explícitamente: el código está terminado, falta desplegarlo.
+- [ ] **Repositorio del portfolio** — la tarjeta enlaza al perfil de GitHub.
+- [ ] **«A tres meses de egresar»** aparece en tres sitios de `index.html`
+      (presentación, tarjeta de datos y *timeline*). Es una frase relativa:
+      conviene actualizarla, o cambiarla por el mes concreto, cuando pase el
+      tiempo.
 
 ---
 
