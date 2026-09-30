@@ -9,6 +9,13 @@ y la **edición audiovisual**.
 No es una plantilla. El diseño, el sistema de estilos, las animaciones y la
 galería de vídeo están construidos desde cero para este proyecto.
 
+**Sitio publicado:** <https://nimajeb-41.github.io/Portafolio/>
+
+> ⚠️ **El historial de git se reescribió el 30 de septiembre de 2026** para
+> borrar datos personales y los vídeos `.mp4` antiguos. Si tienes un clon
+> anterior a esa fecha, **no hagas `pull` ni `push` desde él**: vuelve a
+> clonar el repositorio en una carpeta nueva.
+
 ---
 
 ## Índice
