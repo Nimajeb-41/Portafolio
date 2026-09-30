@@ -491,9 +491,14 @@ Las tipografías se cargan desde Google Fonts en `<head>` y se asignan en
 
 ## Cómo desplegarlo
 
-Al ser un sitio estático, funciona en cualquier hosting. El destino previsto es
-**Cloudflare Pages**, que da una dirección `<nombre>.pages.dev` gratis y, más
-adelante, permite conectar un dominio propio.
+Al ser un sitio estático, funciona en cualquier hosting. Hoy se publica en dos
+sitios a la vez, los dos a partir de la rama `main`:
+
+- **GitHub Pages**: <https://nimajeb-41.github.io/Portafolio/>. Ya está
+  activado (*Settings → Pages → Deploy from a branch: `main` / root*); cada
+  push a `main` lo actualiza en uno o dos minutos.
+- **Cloudflare Pages**: una dirección `<nombre>.pages.dev` gratis que, más
+  adelante, permite conectar un dominio propio.
 
 **Cloudflare Pages conectado al repositorio**
 
@@ -508,11 +513,10 @@ adelante, permite conectar un dominio propio.
 Cada push a `main` publica una versión nueva, y cada rama recibe su propia URL
 de vista previa.
 
-**Cuando tengas la dirección definitiva**, cambia en el `<head>` de
-`index.html` las rutas de `og:image` y `twitter:image` por la URL completa
-(`https://…/assets/images/og-image.jpg`) y añade
-`<link rel="canonical" href="https://…/">`. WhatsApp, LinkedIn y X solo
-muestran la imagen de vista previa con una URL absoluta.
+**Imagen al compartir el enlace.** `og:image` y `twitter:image` usan la URL
+completa de GitHub Pages, porque WhatsApp, LinkedIn y X solo muestran la vista
+previa con una URL absoluta. Si la dirección principal pasa a ser la de
+Cloudflare, cámbialas por esa y añade `<link rel="canonical" href="https://…/">`.
 
 > ⚠️ **Límite de 25 MiB por archivo.** Cloudflare Pages rechaza el despliegue
 > entero si un archivo supera ese tamaño. Por eso los vídeos se reproducen
