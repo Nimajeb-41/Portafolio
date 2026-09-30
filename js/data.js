@@ -41,7 +41,9 @@
   ];
 
   /* ── Vídeos ────────────────────────────────────────────────────────────
-     Los títulos y las duraciones son los reales de cada archivo.
+     Todos se reproducen desde YouTube (campo `youtube`); los .mp4 ya no
+     están en el repositorio. Las portadas son las de assets/videos/posters/;
+     si un vídeo no tiene, se usa la miniatura de YouTube.
 
      NOTA SOBRE LAS DESCRIPCIONES: son un borrador redactado a partir del
      título de cada vídeo. Sustitúyelas por tu propio texto cuando quieras —
@@ -58,60 +60,74 @@
       title: '¿Qué son los artrópodos? Introducción',
       description: 'Vídeo de apertura de la serie: qué define al grupo animal más numeroso del planeta y cómo se organiza.',
       category: 'artropodos',
-      src: 'assets/videos/artropodos-introduccion.mp4',
+      youtube: 'https://www.youtube.com/watch?v=ypn5wqtC2FQ',
+      src: null,
       poster: 'assets/videos/posters/artropodos-introduccion.jpg',
       duration: '8:17',
       date: null,
-      software: null,
-      youtube: null
+      software: null
     },
     {
       id: 'quelicerados',
       title: '¿Qué son los quelicerados? (Arácnidos...)',
       description: 'Segunda entrega de la serie, dedicada a los quelicerados: arañas, escorpiones y compañía.',
       category: 'artropodos',
-      src: 'assets/videos/quelicerados.mp4',
+      youtube: 'https://www.youtube.com/watch?v=qCFG543ur5o',
+      src: null,
       poster: 'assets/videos/posters/quelicerados.jpg',
       duration: '12:38',
       date: null,
-      software: null,
-      youtube: null
+      software: null
     },
     {
       id: 'hexapodos',
       title: '¿Qué son los hexápodos? (Insectos...)',
       description: 'Los hexápodos y los insectos, el subgrupo con más especies descritas dentro de los artrópodos.',
       category: 'artropodos',
-      src: 'assets/videos/hexapodos.mp4',
+      youtube: 'https://www.youtube.com/watch?v=MdWenMa7C8o',
+      src: null,
       poster: 'assets/videos/posters/hexapodos.jpg',
       duration: '15:44',
       date: null,
-      software: null,
-      youtube: null
+      software: null
     },
     {
       id: 'miriapodos',
       title: '¿Qué son los miriápodos? (Ciempiés, milpiés...)',
       description: 'Ciempiés, milpiés y el resto de miriápodos: anatomía, diversidad y papel en el ecosistema.',
       category: 'artropodos',
-      src: 'assets/videos/miriapodos.mp4',
+      youtube: 'https://www.youtube.com/watch?v=K4QxyRTFBNU',
+      src: null,
       poster: 'assets/videos/posters/miriapodos.jpg',
       duration: '12:30',
       date: null,
-      software: null,
-      youtube: null
+      software: null
     },
     {
       id: 'crustaceos',
       title: '¿Qué son los crustáceos? (Cangrejos, camarones, langostas...)',
       description: 'El vídeo más extenso de la serie: un recorrido completo por los crustáceos y su enorme variedad.',
       category: 'artropodos',
-      src: 'assets/videos/crustaceos.mp4',
+      youtube: 'https://www.youtube.com/watch?v=J3C5P1PyPUk',
+      src: null,
       poster: 'assets/videos/posters/crustaceos.jpg',
       duration: '35:15',
       date: null,
-      software: null,
-      youtube: null
+      software: null
+    },
+    /* La entrega más reciente. Sin portada propia: usa la miniatura de
+       YouTube. Añade `duration` cuando quieras mostrarla sobre la portada. */
+    {
+      id: 'trilobites',
+      title: '¿Qué son los trilobites?',
+      description: 'La entrega más reciente de la serie: los trilobites, artrópodos marinos ya extintos que poblaron los mares durante cientos de millones de años.',
+      category: 'artropodos',
+      youtube: 'https://www.youtube.com/watch?v=5oq2TzsrO6U',
+      src: null,
+      poster: null,
+      duration: null,
+      date: null,
+      software: null
     },
 
     /* ── Naturaleza ── */
@@ -120,55 +136,50 @@
       title: 'El Océano Profundo: ¿Qué misterios alberga las profundidades del mar?',
       description: 'Un viaje hacia las zonas más profundas del océano y la vida que consigue habitarlas.',
       category: 'naturaleza',
-      src: 'assets/videos/oceano-profundo.mp4',
+      youtube: 'https://www.youtube.com/watch?v=vqE2vU8UcK0',
+      src: null,
       poster: 'assets/videos/posters/oceano-profundo.jpg',
       duration: '17:31',
       date: null,
-      software: null,
-      youtube: null
+      software: null
     },
     {
       id: 'escorpiones-desierto',
       title: 'El secreto de los escorpiones para vivir en los desiertos',
       description: 'Las adaptaciones que permiten a los escorpiones sobrevivir en uno de los entornos más hostiles.',
       category: 'naturaleza',
-      src: 'assets/videos/escorpiones-desierto.mp4',
+      youtube: 'https://www.youtube.com/watch?v=Q8gIGKJA-7E',
+      src: null,
       poster: 'assets/videos/posters/escorpiones-desierto.jpg',
       duration: '11:32',
       date: null,
-      software: null,
-      youtube: null
+      software: null
     },
     {
       id: 'lombriz-de-tierra',
       title: 'Uno de los animales más importantes de la vida terrestre: La Lombriz de Tierra',
       description: 'Por qué un animal tan discreto resulta clave para el suelo y para la vida terrestre.',
       category: 'naturaleza',
-      src: 'assets/videos/lombriz-de-tierra.mp4',
+      youtube: 'https://www.youtube.com/watch?v=hBvqHnvDins',
+      src: null,
       poster: 'assets/videos/posters/lombriz-de-tierra.jpg',
       duration: '6:33',
       date: null,
-      software: null,
-      youtube: null
+      software: null
     },
 
-    /* ── Ciencia ──
-       ⚠ AVISO SOBRE ESTE ARCHIVO: uno-mas-uno.mp4 tiene pista de vídeo, pero
-       todos sus fotogramas están completamente en negro — solo se escucha el
-       audio. Por eso su portada es un marcador provisional en lugar de un
-       fotograma real. Si vuelves a exportar el vídeo con imagen, sustituye
-       assets/videos/uno-mas-uno.mp4 y su portada.                            */
+    /* ── Ciencia ── */
     {
       id: 'uno-mas-uno',
       title: '¿Por qué uno más uno da dos y no otra cosa?',
       description: 'Una pregunta aparentemente simple para hablar de los fundamentos de la matemática.',
       category: 'ciencia',
-      src: 'assets/videos/uno-mas-uno.mp4',
+      youtube: 'https://www.youtube.com/watch?v=pSEzAQMsBOw',
+      src: null,
       poster: 'assets/videos/posters/uno-mas-uno.jpg',
       duration: '3:54',
       date: null,
-      software: null,
-      youtube: null
+      software: null
     }
 
     /* ── Para añadir un vídeo nuevo, copia este bloque y complétalo ──

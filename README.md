@@ -153,7 +153,7 @@ miportafolioweb/
 │   │   ├── la-elfa-portada.webp  Portada de la novela (sección Escritura)
 │   │   ├── og-image.jpg        Imagen para redes sociales
 │   │   └── projects/           Capturas de cada proyecto
-│   ├── videos/                 Archivos .mp4 de la galería
+│   ├── videos/                 Galería (los vídeos están en YouTube)
 │   │   └── posters/            Portadas .jpg de cada vídeo
 │   └── icons/
 │       └── favicon.svg         Monograma BP
@@ -515,12 +515,9 @@ de vista previa.
 muestran la imagen de vista previa con una URL absoluta.
 
 > ⚠️ **Límite de 25 MiB por archivo.** Cloudflare Pages rechaza el despliegue
-> entero si un archivo supera ese tamaño, y hoy cinco `.mp4` lo superan:
-> `crustaceos` (55,8 MiB), `artropodos-introduccion` (52,9),
-> `hexapodos` (47,4), `oceano-profundo` (36,4) y `escorpiones-desierto` (25,7).
-> La solución prevista es la del campo `youtube` de `js/data.js`: con los nueve
-> enlaces completos, la galería reproduce desde YouTube y la carpeta
-> `assets/videos/*.mp4` se puede borrar (las portadas se quedan).
+> entero si un archivo supera ese tamaño. Por eso los vídeos se reproducen
+> desde YouTube y el repositorio solo guarda sus portadas: hoy el sitio pesa
+> unos 4 MB. Si algún día subes un `.mp4` local, que no pase de 25 MiB.
 
 ---
 
@@ -572,8 +569,8 @@ con un servidor estático. Sin `npm install`, sin build, sin configuración.
 Estos datos se dejaron deliberadamente vacíos para no publicar información
 inventada. Rellénalos cuando quieras:
 
-- [ ] **Enlaces a YouTube por vídeo** — campo `youtube` en `js/data.js`. Con
-      los nueve, se pueden borrar los `.mp4` y publicar en Cloudflare Pages.
+- [ ] **Duración de «¿Qué son los trilobites?»** — campo `duration` en
+      `js/data.js` (ahora `null`, así que no se muestra sobre la portada).
 - [ ] **Fechas de los vídeos** — campo `date` en `js/data.js` (ahora `null`).
 - [ ] **Software de edición** — campo `software` en `js/data.js` (ahora `null`).
 - [ ] **Descripciones de los vídeos** — son un borrador redactado a partir del
