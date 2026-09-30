@@ -5,7 +5,9 @@
    Responsabilidades
      · Construir los filtros por categoría a partir de js/data.js
      · Construir las tarjetas de la galería (con paginación "ver todos")
-     · Portadas: imagen si existe; si no, un fotograma del propio vídeo
+     · Portadas: imagen si existe; si no, la miniatura de YouTube o un
+       fotograma del propio vídeo
+     · Reproducción: desde YouTube si el vídeo tiene enlace; si no, el .mp4
      · Modal accesible: foco atrapado, ESC, clic fuera, anterior/siguiente
      · Pantalla completa opcional desde el botón "Ampliar"
 
@@ -33,6 +35,7 @@
   var modal      = document.getElementById('video-modal');
   var dialog     = modal ? modal.querySelector('.modal__dialog') : null;
   var player     = document.getElementById('modal-video');
+  var embed      = document.getElementById('modal-embed');
   var mTitle     = document.getElementById('modal-title');
   var mDesc      = document.getElementById('modal-desc');
   var mCat       = document.getElementById('modal-cat');
@@ -73,6 +76,19 @@
     if (window.lucide && typeof window.lucide.createIcons === 'function') {
       window.lucide.createIcons(scope ? { nameAttr: 'data-lucide' } : undefined);
     }
+  }
+
+  /**
+   * Extrae el id de 11 caracteres de un enlace de YouTube. Acepta las formas
+   * habituales: youtu.be/ID, youtube.com/watch?v=ID, /shorts/ID, /embed/ID y
+   * /live/ID. Devuelve null si el enlace no es de YouTube.
+   */
+  function youtubeId(url) {
+    if (!url) return null;
+    var m = String(url).match(
+      /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/))([\w-]{11})/
+    );
+    return m ? m[1] : null;
   }
 
   /** Escapa texto antes de insertarlo como HTML. */
@@ -132,9 +148,16 @@
     if (video.software) meta.push('<span><i data-lucide="sliders-horizontal" aria-hidden="true"></i>' + esc(video.software) + '</span>');
     if (!meta.length)   meta.push('<span><i data-lucide="film" aria-hidden="true"></i>Proyecto propio</span>');
 
-    var poster = video.poster
-      ? '<img src="' + esc(video.poster) + '" alt="" loading="lazy" decoding="async" data-fallback="' + esc(video.src) + '">'
-      : '<video src="' + esc(video.src) + '#t=3" preload="metadata" muted playsinline aria-hidden="true"></video>';
+    // Portada, por orden de preferencia: imagen propia → miniatura de YouTube
+    // → fotograma del .mp4. Si la imagen falla, se prueba con el .mp4.
+    var ytId = youtubeId(video.youtube);
+    var image = video.poster || (ytId ? 'https://i.ytimg.com/vi/' + ytId + '/hqdefault.jpg' : null);
+    var fallback = video.src ? ' data-fallback="' + esc(video.src) + '"' : ' data-fallback=""';
+    var poster = image
+      ? '<img src="' + esc(image) + '" alt="" width="1024" height="576" loading="lazy" decoding="async"' + fallback + '>'
+      : video.src
+        ? '<video src="' + esc(video.src) + '#t=3" preload="metadata" muted playsinline aria-hidden="true"></video>'
+        : '<span class="vcard__fallback"><i data-lucide="film"></i></span>';
 
     return '' +
       '<article class="vcard reveal" data-index="' + index + '">' +
@@ -195,12 +218,21 @@
   /**
    * Si la imagen de portada no existe todavía, usamos un fotograma del propio
    * vídeo (fragmento temporal #t=3) para que la tarjeta nunca quede vacía.
+   * Si tampoco hay .mp4 (vídeo solo en YouTube), dejamos un marcador.
    */
   function setupPosterFallbacks() {
     Array.prototype.forEach.call(grid.querySelectorAll('img[data-fallback]'), function (img) {
       img.addEventListener('error', function () {
         var src = img.getAttribute('data-fallback');
         var thumb = img.parentElement;
+
+        if (!src) {
+          img.remove();
+          thumb.insertAdjacentHTML('afterbegin', '<span class="vcard__fallback"><i data-lucide="film"></i></span>');
+          refreshIcons();
+          return;
+        }
+
         var video = document.createElement('video');
 
         video.src = src + '#t=3';
@@ -252,7 +284,7 @@
 
   /* ══════════════════ MODAL ══════════════════ */
 
-  var FOCUSABLE = 'button:not(:disabled), [href], video[controls], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  var FOCUSABLE = 'button:not(:disabled), [href], video[controls], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
   function fillMeta(video) {
     if (!mMeta) return;
@@ -282,13 +314,32 @@
     if (mDesc)  mDesc.textContent  = video.description;
     fillMeta(video);
 
+    // Reproductor: YouTube si el vídeo tiene enlace; si no, el .mp4 local.
+    var ytId = youtubeId(video.youtube);
+
     if (player) {
       player.pause();
-      player.setAttribute('src', video.src);
+      if (ytId || !video.src) {
+        player.removeAttribute('src');
+      } else {
+        player.setAttribute('src', video.src);
+      }
       if (video.poster) player.setAttribute('poster', video.poster);
       else player.removeAttribute('poster');
       player.setAttribute('aria-label', 'Reproductor de vídeo: ' + video.title);
       player.load();
+      player.hidden = !!ytId;
+    }
+
+    if (embed) {
+      // youtube-nocookie: YouTube no guarda cookies hasta que se pulsa play.
+      embed.innerHTML = ytId
+        ? '<iframe src="https://www.youtube-nocookie.com/embed/' + ytId + '?rel=0" ' +
+            'title="' + esc(video.title) + '" ' +
+            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+            'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+        : '';
+      embed.hidden = !ytId;
     }
 
     if (mPos) mPos.textContent = (index + 1) + ' / ' + visibleList.length;
@@ -312,19 +363,32 @@
 
     if (mClose) mClose.focus();
 
-    if (fullscreen && player) {
-      var request = player.requestFullscreen || player.webkitRequestFullscreen ||
-                    player.webkitEnterFullscreen;
-      if (request) {
-        // Esperamos a que haya metadatos para que el navegador no rechace la petición.
-        var go = function () {
-          try { request.call(player); } catch (err) { /* el navegador puede bloquearlo */ }
-          player.removeEventListener('loadedmetadata', go);
-        };
-        if (player.readyState >= 1) go();
-        else player.addEventListener('loadedmetadata', go);
-      }
+    if (!fullscreen) return;
+
+    var frame = embed && !embed.hidden ? embed.querySelector('iframe') : null;
+
+    if (frame) {
+      // El iframe de YouTube puede ponerse a pantalla completa en el mismo clic.
+      requestFullscreen(frame);
+    } else if (player) {
+      // Esperamos a que haya metadatos para que el navegador no rechace la petición.
+      var go = function () {
+        requestFullscreen(player);
+        player.removeEventListener('loadedmetadata', go);
+      };
+      if (player.readyState >= 1) go();
+      else player.addEventListener('loadedmetadata', go);
     }
+  }
+
+  function requestFullscreen(el) {
+    var request = el.requestFullscreen || el.webkitRequestFullscreen || el.webkitEnterFullscreen;
+    if (!request) return;
+    try {
+      var result = request.call(el);
+      // Si el navegador lo bloquea, la promesa se rechaza: lo ignoramos.
+      if (result && typeof result.catch === 'function') result.catch(function () {});
+    } catch (err) { /* el navegador puede bloquearlo */ }
   }
 
   function closeModal() {
@@ -334,6 +398,11 @@
       player.pause();
       player.removeAttribute('src');
       player.load();                  // libera el buffer descargado
+    }
+
+    if (embed) {
+      embed.innerHTML = '';           // quitar el iframe detiene YouTube
+      embed.hidden = true;
     }
 
     modal.classList.remove('is-open');

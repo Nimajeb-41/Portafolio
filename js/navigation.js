@@ -64,6 +64,11 @@
   /* ══════════════ Scroll spy ══════════════ */
 
   function setActive(id) {
+    // Las secciones sin enlace propio en la navbar (Certificados, Creative
+    // Work) declaran con data-nav a qué enlace pertenecen.
+    var section = document.getElementById(id);
+    if (section && section.hasAttribute('data-nav')) id = section.getAttribute('data-nav');
+
     navLinks.forEach(function (link) {
       var isActive = link.getAttribute('href') === '#' + id;
       link.classList.toggle('is-active', isActive);

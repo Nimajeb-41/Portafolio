@@ -12,13 +12,18 @@
      title        (obligatorio) Título tal y como quieres que se muestre.
      description  (obligatorio) 1–2 frases. Se ve en la tarjeta y en el modal.
      category     (obligatorio) Debe coincidir con un `id` de VIDEO_CATEGORIES.
-     src          (obligatorio) Ruta al archivo de vídeo dentro de assets/videos/.
-     poster       (opcional)    Imagen de portada. Si falta o no carga, la web
-                                usa automáticamente un fotograma del propio vídeo.
+     youtube      (recomendado) URL del vídeo en YouTube. Si está, el vídeo se
+                                reproduce desde YouTube dentro del modal y
+                                `src` deja de hacer falta.
+     src          (opcional)    Ruta a un .mp4 dentro de assets/videos/. Solo
+                                se usa si el vídeo no tiene `youtube`.
+                                OJO: Cloudflare Pages no admite archivos de
+                                más de 25 MiB; los vídeos largos, a YouTube.
+     poster       (opcional)    Imagen de portada. Si falta, se usa la
+                                miniatura de YouTube o un fotograma del .mp4.
      duration     (opcional)    Texto libre: "8:17". Se muestra sobre la portada.
      date         (opcional)    Texto libre: "Marzo 2026". `null` = no se muestra.
      software     (opcional)    Programa de edición. `null` = no se muestra.
-     youtube      (opcional)    URL del vídeo en YouTube. Añade un botón en el modal.
 
    Los campos opcionales que valgan `null` simplemente NO aparecen en la interfaz:
    nunca se muestra un dato vacío ni inventado.
@@ -172,12 +177,12 @@
       title: 'Título del vídeo',
       description: 'Una o dos frases sobre el vídeo.',
       category: 'naturaleza',                       // id de VIDEO_CATEGORIES
-      src: 'assets/videos/mi-nuevo-video.mp4',
+      youtube: 'https://www.youtube.com/watch?v=XXXXXXXXXXX',
+      src: null,                                    // solo si no está en YouTube
       poster: 'assets/videos/posters/mi-nuevo-video.jpg',
       duration: '10:00',
       date: 'Marzo 2026',
-      software: 'DaVinci Resolve',
-      youtube: 'https://www.youtube.com/watch?v=XXXXXXXX'
+      software: 'DaVinci Resolve'
     }
     ─────────────────────────────────────────────────────────────── */
   ];

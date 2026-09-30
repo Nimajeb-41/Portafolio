@@ -41,6 +41,16 @@
     toggle.setAttribute('title',      toLight ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
   }
 
+  /* La barra del navegador en móvil sigue el tema activo. El navegador usa
+     la primera etiqueta theme-color cuyo `media` coincide, así que no basta
+     con añadir otra al final: se actualizan las dos que ya hay en <head>. */
+  function syncThemeColor(theme) {
+    var color = theme === 'light' ? '#f6f7fa' : '#07080b';
+    document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
+      meta.setAttribute('content', color);
+    });
+  }
+
   /**
    * Aplica un tema.
    * @param {'dark'|'light'} theme
@@ -56,15 +66,7 @@
 
     root.setAttribute('data-theme', theme);
     syncToggle(theme);
-
-    // La barra del navegador en móvil sigue el tema activo.
-    var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-    if (!meta) {
-      meta = document.createElement('meta');
-      meta.setAttribute('name', 'theme-color');
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute('content', theme === 'light' ? '#f6f7fa' : '#07080b');
+    syncThemeColor(theme);
 
     // Otros módulos (por ejemplo el canvas del hero) pueden reaccionar al cambio.
     document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: theme } }));
@@ -94,6 +96,7 @@
 
   /* Estado inicial: el atributo ya viene puesto desde <head>. */
   syncToggle(currentTheme());
+  syncThemeColor(currentTheme());
 
   /* API mínima para depurar desde la consola. */
   window.BPTheme = {

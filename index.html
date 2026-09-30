@@ -10,7 +10,7 @@
   <meta name="robots" content="index, follow">
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#07080b" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#f6f7fa" media="(prefers-color-scheme: light)">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -121,6 +121,7 @@
         <a href="#skills"   class="nav__link"><span>Skills</span></a>
         <a href="#proyectos" class="nav__link"><span>Proyectos</span></a>
         <a href="#video"    class="nav__link"><span>Video</span></a>
+        <a href="#escritura" class="nav__link"><span>Escritura</span></a>
         <a href="#cv"       class="nav__link nav__link--cv"><span>CV</span></a>
         <a href="#contacto" class="nav__link"><span>Contacto</span></a>
       </nav>
@@ -156,8 +157,9 @@
       <a href="#proyectos"    class="mobile-menu__link"><span class="mm-num">05</span> Proyectos      <i data-lucide="arrow-right" aria-hidden="true"></i></a>
       <a href="#video"        class="mobile-menu__link"><span class="mm-num">06</span> Video Editing  <i data-lucide="arrow-right" aria-hidden="true"></i></a>
       <a href="#creative"     class="mobile-menu__link"><span class="mm-num">07</span> Creative Work  <i data-lucide="arrow-right" aria-hidden="true"></i></a>
-      <a href="#cv"           class="mobile-menu__link mobile-menu__link--cv"><span class="mm-num">08</span> Mi CV          <i data-lucide="download" aria-hidden="true"></i></a>
-      <a href="#contacto"     class="mobile-menu__link"><span class="mm-num">09</span> Contacto       <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#escritura"    class="mobile-menu__link"><span class="mm-num">08</span> Escritura      <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#cv"           class="mobile-menu__link mobile-menu__link--cv"><span class="mm-num">09</span> Mi CV          <i data-lucide="download" aria-hidden="true"></i></a>
+      <a href="#contacto"     class="mobile-menu__link"><span class="mm-num">10</span> Contacto       <i data-lucide="arrow-right" aria-hidden="true"></i></a>
 
       <div class="mobile-menu__foot">
         <p class="mobile-menu__label">Encuéntrame en</p>
@@ -264,14 +266,15 @@
               <p class="tl"><span class="tl-prompt">➜</span> <span class="tl-dir">~/benjamin</span> <span class="tl-cmd">whoami</span></p>
               <p class="tl tl-out">web_developer &amp; video_editor</p>
               <p class="tl"><span class="tl-prompt">➜</span> <span class="tl-dir">~/benjamin</span> <span class="tl-cmd">cat status.log</span></p>
-              <p class="tl tl-out tl-type" aria-live="polite">
-                <span id="terminal-type"></span><span class="caret" aria-hidden="true"></span>
+              <p class="tl tl-out tl-type">
+                <span id="terminal-type" aria-hidden="true"></span><span class="caret" aria-hidden="true"></span>
+                <span class="visually-hidden">developing, creating, learning, building the future.</span>
               </p>
               <p class="tl"><span class="tl-prompt">➜</span> <span class="tl-dir">~/benjamin</span> <span class="tl-cmd">stack --list</span></p>
               <p class="tl tl-out tl-stack">
-                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span>
-                <span>Node</span><span>PHP</span><span>MySQL</span><span>Java</span>
-                <span>Python</span><span>Linux</span>
+                <span>Java</span><span>C++</span><span>Python</span><span>JavaScript</span>
+                <span>TypeScript</span><span>React</span><span>Astro</span><span>Node</span>
+                <span>PHP</span><span>MySQL</span><span>Linux</span>
               </p>
               <p class="tl"><span class="tl-prompt">➜</span> <span class="tl-dir">~/benjamin</span> <span class="caret caret--idle" aria-hidden="true"></span></p>
             </div>
@@ -299,11 +302,11 @@
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track" id="marquee-track">
         <div class="marquee__group">
-          <span>HTML5</span><i>◆</i><span>CSS3</span><i>◆</i><span>JavaScript</span><i>◆</i>
-          <span>React</span><i>◆</i><span>Node.js</span><i>◆</i><span>PHP</span><i>◆</i>
-          <span>MySQL</span><i>◆</i><span>Java</span><i>◆</i><span>Python</span><i>◆</i>
-          <span>Linux</span><i>◆</i><span>Git</span><i>◆</i><span>Video Editing</span><i>◆</i>
-          <span>Motion</span><i>◆</i><span>Visual Design</span><i>◆</i>
+          <span>Java</span><i>◆</i><span>C++</span><i>◆</i><span>Python</span><i>◆</i>
+          <span>JavaScript</span><i>◆</i><span>TypeScript</span><i>◆</i><span>React</span><i>◆</i>
+          <span>Astro</span><i>◆</i><span>Node.js</span><i>◆</i><span>PHP</span><i>◆</i>
+          <span>MySQL</span><i>◆</i><span>Linux</span><i>◆</i><span>Git</span><i>◆</i>
+          <span>Video Editing</span><i>◆</i><span>Motion</span><i>◆</i><span>Writing</span><i>◆</i>
         </div>
       </div>
     </div>
@@ -344,18 +347,18 @@
 
           <div class="intro__text">
             <p class="intro__lead">
-              A tres meses de egresar del <strong>Bachillerato Tecnológico en Tecnologías
+              En noviembre de 2026 egreso del <strong>Bachillerato Tecnológico en Tecnologías
               de la Información</strong>.
             </p>
             <p>
               No espero al título para empezar a construir. Mientras curso el último tramo,
-              desarrollo proyectos propios que ya funcionan: un conversor de imágenes listo
-              para publicarse, un videojuego escrito sin motor gráfico y una aplicación de
+              desarrollo proyectos propios que ya funcionan: un conversor de imágenes publicado
+              con dominio propio, un videojuego escrito sin motor gráfico y una aplicación de
               escritorio con su propio motor de simulación.
             </p>
             <ul class="intro__points" role="list">
-              <li><i data-lucide="graduation-cap" aria-hidden="true"></i> Egreso en <strong>tres meses</strong></li>
-              <li><i data-lucide="package-check" aria-hidden="true"></i> Un producto <strong>terminado</strong></li>
+              <li><i data-lucide="graduation-cap" aria-hidden="true"></i> Egreso en <strong>noviembre 2026</strong></li>
+              <li><i data-lucide="package-check" aria-hidden="true"></i> Un producto <strong>publicado</strong></li>
               <li><i data-lucide="hammer" aria-hidden="true"></i> Dos proyectos <strong>en desarrollo</strong></li>
             </ul>
           </div>
@@ -369,7 +372,7 @@
               <p>
                 Soy <strong>Benjamín Paz</strong>, tengo 18 años y soy de <strong>Uruguay</strong>.
                 Estoy cursando el <strong>Bachillerato Tecnológico en Tecnologías de la
-                Información</strong>, del que <strong>egreso dentro de tres meses</strong>, y en
+                Información</strong>, del que <strong>egreso en noviembre de 2026</strong>, y en
                 paralelo desarrollo mis propios proyectos para llevar a la práctica todo lo que
                 voy aprendiendo.
               </p>
@@ -394,7 +397,7 @@
               </li>
               <li class="fact fact--highlight">
                 <i data-lucide="graduation-cap" aria-hidden="true"></i>
-                <div><strong>Egreso en 3 meses</strong><span>Bachillerato Tecnológico en TI</span></div>
+                <div><strong>Egreso: nov. 2026</strong><span>Bachillerato Tecnológico en TI</span></div>
               </li>
               <li class="fact">
                 <i data-lucide="code-xml" aria-hidden="true"></i>
@@ -410,7 +413,7 @@
               </li>
               <li class="fact">
                 <i data-lucide="languages" aria-hidden="true"></i>
-                <div><strong>Idioma</strong><span>Español · inglés técnico</span></div>
+                <div><strong>Idiomas</strong><span>Español nativo · inglés B1</span></div>
               </li>
             </ul>
           </div>
@@ -426,7 +429,7 @@
               <li class="timeline__item is-active">
                 <span class="timeline__node" aria-hidden="true"></span>
                 <div class="timeline__body">
-                  <span class="timeline__state">Egreso en 3 meses</span>
+                  <span class="timeline__state">Egreso · noviembre 2026</span>
                   <h4>Bachillerato Tecnológico en TI</h4>
                   <p>Bases de programación, sistemas y tecnologías de la información.</p>
                 </div>
@@ -497,30 +500,50 @@
             <header class="skill-group__head">
               <span class="skill-group__icon"><i data-lucide="code-xml" aria-hidden="true"></i></span>
               <div>
-                <h3>Desarrollo</h3>
-                <p>Lenguajes y tecnologías del lado del cliente y del servidor.</p>
+                <h3>Lenguajes</h3>
+                <p>Java es mi lenguaje principal; el resto, el que pida cada proyecto.</p>
               </div>
             </header>
             <ul class="chips" role="list">
+              <li class="chip chip--main"><span class="chip__glyph" aria-hidden="true">J</span>Java <span class="chip__tag">Principal</span></li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">++</span>C++</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">Py</span>Python</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">JS</span>JavaScript</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">TS</span>TypeScript</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">php</span>PHP</li>
               <li class="chip"><span class="chip__glyph" aria-hidden="true">&lt;/&gt;</span>HTML5</li>
               <li class="chip"><span class="chip__glyph" aria-hidden="true">#</span>CSS3</li>
-              <li class="chip"><span class="chip__glyph" aria-hidden="true">JS</span>JavaScript</li>
-              <li class="chip"><span class="chip__glyph" aria-hidden="true">⚛</span>React</li>
-              <li class="chip"><span class="chip__glyph" aria-hidden="true">⬢</span>Node.js</li>
-              <li class="chip"><span class="chip__glyph" aria-hidden="true">php</span>PHP</li>
-              <li class="chip"><span class="chip__glyph" aria-hidden="true">◈</span>MySQL</li>
-              <li class="chip"><span class="chip__glyph" aria-hidden="true">J</span>Java</li>
-              <li class="chip"><span class="chip__glyph" aria-hidden="true">Py</span>Python</li>
-              <li class="chip"><span class="chip__glyph" aria-hidden="true">▲</span>Linux</li>
             </ul>
           </article>
 
           <article class="skill-group reveal" data-reveal-delay="80">
             <header class="skill-group__head">
+              <span class="skill-group__icon"><i data-lucide="layers" aria-hidden="true"></i></span>
+              <div>
+                <h3>Frameworks y datos</h3>
+                <p>Web, escritorio, videojuegos y bases de datos.</p>
+              </div>
+            </header>
+            <ul class="chips" role="list">
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">⚛</span>React</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">A</span>Astro</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">⬢</span>Node.js</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">~</span>Tailwind CSS</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">Fx</span>JavaFX</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">Qt</span>PySide6</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">rl</span>raylib</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">Gd</span>Godot</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">◈</span>MySQL</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">◇</span>SQLite</li>
+            </ul>
+          </article>
+
+          <article class="skill-group reveal">
+            <header class="skill-group__head">
               <span class="skill-group__icon"><i data-lucide="wrench" aria-hidden="true"></i></span>
               <div>
                 <h3>Herramientas</h3>
-                <p>Control de versiones y entornos de trabajo del día a día.</p>
+                <p>Control de versiones, entornos y compilación del día a día.</p>
               </div>
             </header>
             <ul class="chips" role="list">
@@ -528,15 +551,19 @@
               <li class="chip"><span class="chip__glyph" aria-hidden="true">◉</span>GitHub</li>
               <li class="chip"><span class="chip__glyph" aria-hidden="true">▣</span>VS Code</li>
               <li class="chip"><span class="chip__glyph" aria-hidden="true">IJ</span>IntelliJ IDEA</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">▲</span>Linux</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">▤</span>Docker</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">M</span>Maven</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">Cm</span>CMake</li>
             </ul>
           </article>
 
-          <article class="skill-group reveal" data-reveal-delay="160">
+          <article class="skill-group reveal" data-reveal-delay="80">
             <header class="skill-group__head">
               <span class="skill-group__icon skill-group__icon--warm"><i data-lucide="clapperboard" aria-hidden="true"></i></span>
               <div>
                 <h3>Creatividad</h3>
-                <p>Todo lo que ocurre cuando el código deja paso a la imagen.</p>
+                <p>Todo lo que ocurre cuando el código deja paso a la imagen y a la palabra.</p>
               </div>
             </header>
             <ul class="chips chips--warm" role="list">
@@ -544,6 +571,7 @@
               <li class="chip"><span class="chip__glyph" aria-hidden="true">≈</span>Motion</li>
               <li class="chip"><span class="chip__glyph" aria-hidden="true">◑</span>Visual Design</li>
               <li class="chip"><span class="chip__glyph" aria-hidden="true">✦</span>Content Creation</li>
+              <li class="chip"><span class="chip__glyph" aria-hidden="true">✎</span>Escritura</li>
             </ul>
           </article>
 
@@ -560,7 +588,7 @@
 
 
     <!-- ═══════════════════════════ CERTIFICADOS ═══════════════════════════ -->
-    <section class="section" id="certificados">
+    <section class="section" id="certificados" data-nav="skills">
       <div class="container">
 
         <header class="section__head reveal">
@@ -650,7 +678,7 @@
           <p class="eyebrow"><span class="eyebrow__idx">04</span> Featured Projects</p>
           <h2 class="section__title">Proyectos que <span class="grad">construyo</span> mientras aprendo.</h2>
           <p class="section__sub">
-            Cinco proyectos reales en distintas etapas: un producto terminado, un videojuego
+            Cinco proyectos reales en distintas etapas: un producto ya publicado, un videojuego
             escrito sin motor gráfico y una aplicación de escritorio con motor de simulación
             propio. Lo que está en construcción también se muestra — el proceso es parte del
             portfolio. Todas las capturas son de los proyectos ejecutándose.
@@ -659,20 +687,20 @@
 
         <div class="projects">
 
-          <!-- Proyecto 01 · ImageForge — terminado, pendiente de publicar -->
+          <!-- Proyecto 01 · ImageForge — publicado en imageforge.work -->
           <article class="project project--wide project--flagship reveal">
             <div class="project__visual">
               <button class="project__shot" type="button"
                       data-gallery="imageforge"
                       data-src="assets/images/projects/imageforge-home.png"
                       data-caption="ImageForge — portada: conversión de imágenes íntegramente en el navegador.">
-                <img src="assets/images/projects/imageforge-home.png"
+                <img width="1600" height="1000" src="assets/images/projects/imageforge-home.png"
                      alt="Portada de ImageForge con el titular «Convert, edit and optimize your images» y la zona para soltar archivos."
                      loading="lazy" decoding="async">
                 <span class="project__zoom" aria-hidden="true"><i data-lucide="maximize-2"></i></span>
               </button>
               <span class="project__badge project__badge--live">
-                <i data-lucide="circle-check" aria-hidden="true"></i> Terminado · v1.0.0
+                <i data-lucide="circle-check" aria-hidden="true"></i> Publicado · v1.0.0
               </span>
             </div>
             <div class="project__body">
@@ -696,21 +724,23 @@
                         data-gallery="imageforge"
                         data-src="assets/images/projects/imageforge-tool.png"
                         data-caption="ImageForge — página de herramienta: conversor de PNG a WebP.">
-                  <img src="assets/images/projects/imageforge-tool.png" alt="Página del conversor de PNG a WebP de ImageForge." loading="lazy" decoding="async">
+                  <img width="1600" height="1000" src="assets/images/projects/imageforge-tool.png" alt="Página del conversor de PNG a WebP de ImageForge." loading="lazy" decoding="async">
                 </button>
                 <button class="project__thumb" type="button"
                         data-gallery="imageforge"
                         data-src="assets/images/projects/imageforge-tools.png"
                         data-caption="ImageForge — índice con todas las herramientas de imagen.">
-                  <img src="assets/images/projects/imageforge-tools.png" alt="Índice de todas las herramientas de imagen de ImageForge." loading="lazy" decoding="async">
+                  <img width="1600" height="1000" src="assets/images/projects/imageforge-tools.png" alt="Índice de todas las herramientas de imagen de ImageForge." loading="lazy" decoding="async">
                 </button>
               </div>
               <div class="project__actions">
-                <a class="btn btn--sm btn--primary" href="https://github.com/Nimajeb-41/ImageForge" target="_blank" rel="noopener noreferrer">
+                <a class="btn btn--sm btn--primary" href="https://imageforge.work" target="_blank" rel="noopener noreferrer">
+                  <i data-lucide="globe" aria-hidden="true"></i> Ver demo
+                </a>
+                <a class="btn btn--sm btn--ghost" href="https://github.com/Nimajeb-41/ImageForge" target="_blank" rel="noopener noreferrer">
                   <svg class="brand-ic" aria-hidden="true"><use href="#i-github"></use></svg>
                   Ver código
                 </a>
-                <span class="project__hint"><i data-lucide="globe" aria-hidden="true"></i> Pendiente de publicar con dominio propio</span>
               </div>
             </div>
           </article>
@@ -722,7 +752,7 @@
                       data-gallery="prisma"
                       data-src="assets/images/projects/prisma-menu.png"
                       data-caption="PRISMA — menú principal. Toda la interfaz está dibujada por código, sin imágenes.">
-                <img src="assets/images/projects/prisma-menu.png"
+                <img width="1920" height="1080" src="assets/images/projects/prisma-menu.png"
                      alt="Menú principal de PRISMA: un prisma refractando luz sobre el título «PRISMA — La última luz»."
                      loading="lazy" decoding="async">
                 <span class="project__zoom" aria-hidden="true"><i data-lucide="maximize-2"></i></span>
@@ -750,13 +780,13 @@
                         data-gallery="prisma"
                         data-src="assets/images/projects/prisma-partida.png"
                         data-caption="PRISMA — partida en el Estrato CORTEZA: Glifos desplegados, Estática avanzando y el HUD de Lumen y sintonía.">
-                  <img src="assets/images/projects/prisma-partida.png" alt="Partida de PRISMA con la arena de cinco carriles, enemigos avanzando y el panel de Glifos." loading="lazy" decoding="async">
+                  <img width="1920" height="1080" src="assets/images/projects/prisma-partida.png" alt="Partida de PRISMA con la arena de cinco carriles, enemigos avanzando y el panel de Glifos." loading="lazy" decoding="async">
                 </button>
                 <button class="project__thumb" type="button"
                         data-gallery="prisma"
                         data-src="assets/images/projects/prisma-estratos.png"
                         data-caption="PRISMA — selección de Estrato, con el progreso guardado entre partidas.">
-                  <img src="assets/images/projects/prisma-estratos.png" alt="Pantalla de selección de Estratos de PRISMA con tres niveles: completado, disponible y bloqueado." loading="lazy" decoding="async">
+                  <img width="1920" height="1080" src="assets/images/projects/prisma-estratos.png" alt="Pantalla de selección de Estratos de PRISMA con tres niveles: completado, disponible y bloqueado." loading="lazy" decoding="async">
                 </button>
               </div>
               <div class="project__actions">
@@ -772,7 +802,7 @@
                       data-gallery="ftm"
                       data-src="assets/images/projects/ftm-dashboard.png"
                       data-caption="Football Tournament Manager — panel principal de una Copa Libertadores con la fase de grupos completa.">
-                <img src="assets/images/projects/ftm-dashboard.png"
+                <img width="1925" height="1080" src="assets/images/projects/ftm-dashboard.png"
                      alt="Panel principal de Football Tournament Manager mostrando 32 equipos, 96 partidos jugados y 254 goles."
                      loading="lazy" decoding="async">
                 <span class="project__zoom" aria-hidden="true"><i data-lucide="maximize-2"></i></span>
@@ -801,13 +831,13 @@
                         data-gallery="ftm"
                         data-src="assets/images/projects/ftm-standings.png"
                         data-caption="Football Tournament Manager — tabla de posiciones por grupo, con racha de resultados y criterios de desempate.">
-                  <img src="assets/images/projects/ftm-standings.png" alt="Tablas de posiciones por grupo con puntos, diferencia de goles y racha de resultados." loading="lazy" decoding="async">
+                  <img width="1925" height="1080" src="assets/images/projects/ftm-standings.png" alt="Tablas de posiciones por grupo con puntos, diferencia de goles y racha de resultados." loading="lazy" decoding="async">
                 </button>
                 <button class="project__thumb" type="button"
                         data-gallery="ftm"
                         data-src="assets/images/projects/ftm-statistics.png"
                         data-caption="Football Tournament Manager — estadísticas del torneo con gráficos integrados.">
-                  <img src="assets/images/projects/ftm-statistics.png" alt="Pantalla de estadísticas con titulares del torneo y gráficos de goles por jornada." loading="lazy" decoding="async">
+                  <img width="1925" height="1080" src="assets/images/projects/ftm-statistics.png" alt="Pantalla de estadísticas con titulares del torneo y gráficos de goles por jornada." loading="lazy" decoding="async">
                 </button>
               </div>
               <div class="project__actions">
@@ -875,9 +905,9 @@
                 <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Accesibilidad</li>
               </ul>
               <div class="project__actions">
-                <a class="btn btn--sm btn--ghost" href="https://github.com/Nimajeb-41" target="_blank" rel="noopener noreferrer">
+                <a class="btn btn--sm btn--primary" href="https://github.com/Nimajeb-41/Portafolio" target="_blank" rel="noopener noreferrer">
                   <svg class="brand-ic" aria-hidden="true"><use href="#i-github"></use></svg>
-                  Mi GitHub
+                  Ver código
                 </a>
               </div>
             </div>
@@ -976,7 +1006,7 @@
 
 
     <!-- ═══════════════════════ CREATIVE WORK ═══════════════════════ -->
-    <section class="section" id="creative">
+    <section class="section" id="creative" data-nav="video">
       <div class="container">
 
         <header class="section__head reveal">
@@ -1011,6 +1041,58 @@
     </section>
 
 
+    <!-- ═══════════════════════════ ESCRITURA ═══════════════════════════ -->
+    <section class="section section--alt" id="escritura">
+      <div class="container">
+
+        <header class="section__head reveal">
+          <p class="eyebrow"><span class="eyebrow__idx">07</span> Escritura</p>
+          <h2 class="section__title">También escribo <span class="grad">historias</span>.</h2>
+          <p class="section__sub">
+            Además de programar y editar, escribo ficción. Es la tercera forma de hacer lo
+            mismo: construir un mundo pieza a pieza hasta que se sostenga solo.
+          </p>
+        </header>
+
+        <article class="book reveal">
+          <div class="book__visual">
+            <!-- Portada dibujada con CSS. Para usar la portada real, sustituye
+                 este <div class="book__cover"> por:
+                 <img class="book__img" src="assets/images/novela-portada.jpg"
+                      alt="Portada de la novela …" width="…" height="…" loading="lazy"> -->
+            <div class="book__cover" aria-hidden="true">
+              <span class="book__frame"></span>
+              <span class="book__emblem"><i data-lucide="castle"></i></span>
+              <span class="book__genre">Alta fantasía</span>
+              <span class="book__author">Benjamín Paz</span>
+            </div>
+          </div>
+
+          <div class="book__body">
+            <p class="book__kicker">Novela · Alta fantasía</p>
+            <h3 class="book__title">Mi primera novela</h3>
+            <p class="book__desc">
+              Una novela de alta fantasía escrita de principio a fin: está terminada y ya se
+              puede conseguir en Payhip.
+            </p>
+
+            <dl class="book__facts">
+              <div><dt>Género</dt><dd>Alta fantasía</dd></div>
+              <div><dt>Estado</dt><dd>Terminada</dd></div>
+              <div><dt>Disponible en</dt><dd>Payhip</dd></div>
+            </dl>
+
+            <div class="book__actions">
+              <a class="btn btn--primary" href="https://payhip.com/b/8A4GK" target="_blank" rel="noopener noreferrer">
+                <i data-lucide="book-open" aria-hidden="true"></i> Ver la novela en Payhip
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
     <!-- ═══════════════════════════ CV ═══════════════════════════ -->
     <section class="cv" id="cv">
       <div class="cv__bg" aria-hidden="true">
@@ -1021,7 +1103,7 @@
       <div class="container cv__inner">
 
         <div class="cv__content reveal">
-          <p class="eyebrow"><span class="eyebrow__idx">07</span> Currículum</p>
+          <p class="eyebrow"><span class="eyebrow__idx">08</span> Currículum</p>
 
           <h2 class="cv__title">MI&nbsp;<span class="grad">CV</span></h2>
 
@@ -1079,7 +1161,7 @@
 
       <div class="container">
         <header class="section__head section__head--center reveal">
-          <p class="eyebrow"><span class="eyebrow__idx">08</span> Contacto</p>
+          <p class="eyebrow"><span class="eyebrow__idx">09</span> Contacto</p>
           <h2 class="section__title section__title--xl">¿Construimos <span class="grad">algo</span>?</h2>
           <p class="section__sub">
             Si tienes un proyecto, una idea o simplemente quieres ponerte en contacto, hablemos.
@@ -1186,6 +1268,7 @@
           <li><a href="#certificados">Certificados</a></li>
           <li><a href="#proyectos">Proyectos</a></li>
           <li><a href="#video">Video Editing</a></li>
+          <li><a href="#escritura">Escritura</a></li>
           <li><a href="#cv">Mi CV</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
@@ -1267,6 +1350,8 @@
       <div class="modal__player">
         <video id="modal-video" controls playsinline preload="metadata"
                aria-label="Reproductor de vídeo"></video>
+        <!-- Aquí se inserta el reproductor de YouTube cuando el vídeo tiene enlace -->
+        <div class="modal__embed" id="modal-embed" hidden></div>
       </div>
 
       <div class="modal__info">
@@ -1292,8 +1377,8 @@
 
 
   <!-- ═══════════════════════════ SCRIPTS ═══════════════════════════ -->
-  <!-- Lucide Icons (CDN) -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <!-- Lucide Icons v1.49.0 (copia local: no depende de un CDN ni cambia de versión solo) -->
+  <script src="js/vendor/lucide.min.js" defer></script>
 
   <script src="js/data.js" defer></script>
   <script src="js/theme.js" defer></script>

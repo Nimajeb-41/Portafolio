@@ -36,9 +36,10 @@ galería de vídeo están construidos desde cero para este proyecto.
 
 Benjamín Paz tiene 18 años y es de Uruguay. Está cursando el
 **Bachillerato Tecnológico en Tecnologías de la Información**, del que egresa
-dentro de tres meses, y en paralelo desarrolla proyectos propios mientras
+en noviembre de 2026, y en paralelo desarrolla proyectos propios mientras
 amplía sus conocimientos en programación, desarrollo web, herramientas
-digitales y edición audiovisual.
+digitales y edición audiovisual. También escribe ficción: tiene terminada una
+novela de alta fantasía.
 
 Su objetivo profesional es seguir creciendo como desarrollador, avanzar hacia el
 **Full Stack** y continuar creando proyectos donde la tecnología y la creatividad
@@ -81,15 +82,17 @@ se cruzan.
 - Sección **Sobre mí** con retrato, datos rápidos y una *timeline* de recorrido
   profesional, sin fechas inventadas
 - **Skills** agrupadas por categoría, sin barras de porcentaje falsas
-- **Certificados** con los PDFs originales, que se pueden ver y descargar
+- **Certificados** en PDF, con la cédula censurada, que se pueden ver y descargar
 - **Featured Projects**: cinco proyectos reales con capturas de cada uno
   ejecutándose, y un *lightbox* accesible para ampliarlas
+- **Escritura**: la novela de alta fantasía, con enlace a Payhip
 - Sección de **CV** a ancho completo, que se mantiene oscura en los dos temas
   para separarse visualmente del resto de la página
 - **Video Editing** con galería filtrable por categoría y paginación
 - **Modal de vídeo accesible**: `role="dialog"`, `aria-modal`, foco atrapado,
   cierre con `ESC` o clic fuera, navegación anterior/siguiente con flechas y
-  botón de pantalla completa
+  botón de pantalla completa. Reproduce desde YouTube si el vídeo tiene enlace,
+  o el `.mp4` local si no
 
 ---
 
@@ -100,7 +103,7 @@ se cruzan.
 | **HTML5** | Estructura semántica (`header`, `nav`, `main`, `section`, `article`, `footer`) |
 | **CSS3** | Sistema de diseño con *custom properties*, Grid, Flexbox, `color-mix()`, `backdrop-filter` |
 | **JavaScript (ES6+)** | Módulos IIFE independientes, sin build ni empaquetador |
-| **Lucide Icons** | Iconos de interfaz, vía CDN |
+| **Lucide Icons** | Iconos de interfaz, copia local fijada en la v1.49.0 (`js/vendor/`) |
 | Canvas API | Constelación animada del hero |
 | IntersectionObserver | Revelado al hacer scroll y *scroll spy* |
 
@@ -122,9 +125,12 @@ Ambos estaban sobre la mesa y se descartaron por motivos concretos:
   Añadir una librería de animación habría sido peso sin beneficio.
 
 **Lucide Icons sí se usa**, porque aporta un set de iconos consistente que sería
-absurdo redibujar a mano. Los iconos de marca (GitHub, YouTube, Behance,
-WhatsApp) van incrustados como *sprite* SVG propio: Lucide no los incluye y así
-funcionan incluso sin conexión al CDN.
+absurdo redibujar a mano. Va copiado en `js/vendor/lucide.min.js` con la versión
+fijada: así no depende de que un CDN responda, y una versión nueva con cambios
+incompatibles no puede romper los iconos sin que nadie toque el código. Para
+actualizarlo, descarga `lucide@<versión>/dist/umd/lucide.min.js` de npm y
+sustituye el archivo. Los iconos de marca (GitHub, YouTube, Behance, WhatsApp)
+van incrustados como *sprite* SVG propio, porque Lucide no los incluye.
 
 ---
 
@@ -161,7 +167,9 @@ miportafolioweb/
 │   ├── animations.js           IntersectionObserver, canvas, cursor, terminal
 │   ├── video.js                Galería filtrable y modal accesible
 │   ├── lightbox.js             Vista ampliada de las capturas de proyecto
-│   └── main.js                 Inicialización general
+│   ├── main.js                 Inicialización general
+│   └── vendor/
+│       └── lucide.min.js       Lucide Icons v1.49.0 (licencia ISC al lado)
 │
 ├── projects/                   Páginas de detalle por proyecto (opcional)
 │   ├── README.md
@@ -183,16 +191,17 @@ El proyecto es HTML estático, pero **no basta con abrir `index.html` haciendo
 doble clic**: al usar el protocolo `file://`, algunos navegadores bloquean la
 reproducción de los vídeos locales. Levanta un servidor local.
 
-**Opción 1 — Python** (viene preinstalado en muchos sistemas):
+**Opción 1 — Python** (viene preinstalado en muchos sistemas), desde la
+carpeta del proyecto:
 
 ```bash
-cd C:/Users/Usuario/Documents/miportafolioweb && python -m http.server 5500
+python -m http.server 5500
 ```
 
-**Opción 2 — Node.js**:
+**Opción 2 — Node.js**, desde la carpeta del proyecto:
 
 ```bash
-npx serve C:/Users/Usuario/Documents/miportafolioweb -l 5500
+npx serve . -l 5500
 ```
 
 **Opción 3 — VS Code**: instala la extensión *Live Server*, haz clic derecho
@@ -207,12 +216,12 @@ Después abre <http://localhost:5500> en el navegador.
 Todo el contenido de la galería vive en **`js/data.js`**. No hay que tocar el
 HTML: las tarjetas, los filtros, el contador y el modal se generan solos.
 
-**1.** Copia el archivo `.mp4` a `assets/videos/`.
-Usa un nombre sin espacios, tildes ni mayúsculas: `mi-nuevo-video.mp4`.
+**1.** Sube el vídeo a YouTube y copia su enlace. Es la forma recomendada: el
+sitio no carga con el archivo y Cloudflare Pages no admite archivos de más de
+25 MiB.
 
-**2.** (Opcional) Coloca una portada en `assets/videos/posters/` con el mismo
-nombre: `mi-nuevo-video.jpg`.
-Si no la pones, la web extrae automáticamente un fotograma del propio vídeo.
+**2.** (Opcional) Coloca una portada en `assets/videos/posters/`:
+`mi-nuevo-video.jpg`. Si no la pones, se usa la miniatura de YouTube.
 
 **3.** Abre `js/data.js` y añade un objeto al array `VIDEOS`:
 
@@ -222,14 +231,17 @@ Si no la pones, la web extrae automáticamente un fotograma del propio vídeo.
   title: 'Título del vídeo',
   description: 'Una o dos frases sobre el vídeo.',
   category: 'naturaleza',                     // id de VIDEO_CATEGORIES
-  src: 'assets/videos/mi-nuevo-video.mp4',
+  youtube: 'https://youtu.be/XXXXXXXXXXX',    // se reproduce dentro del modal
+  src: null,                                  // .mp4 local, solo si no hay YouTube
   poster: 'assets/videos/posters/mi-nuevo-video.jpg',
   duration: '10:00',
   date: 'Marzo 2026',                         // null si no la conoces
-  software: 'DaVinci Resolve',                // null si prefieres no indicarlo
-  youtube: 'https://youtu.be/XXXXXXXX'        // null si no aplica
+  software: 'DaVinci Resolve'                 // null si prefieres no indicarlo
 }
 ```
+
+Si un vídeo no está en YouTube, copia el `.mp4` a `assets/videos/` (nombre sin
+espacios, tildes ni mayúsculas, **menos de 25 MiB**) y pon su ruta en `src`.
 
 Los campos con valor `null` **no se muestran**: nunca aparece un dato vacío.
 
@@ -366,10 +378,11 @@ Copia el PDF a `assets/docs/` y duplica un bloque `<li class="cert">` dentro de
 ```
 
 > ⚠️ **Antes de publicar, revisa qué datos contienen los PDFs.**
-> Las dos constancias de Ceibal incluyen el **número de cédula de identidad**
-> en el texto del documento. Al subir el sitio a internet ese dato queda
-> público y indexable. Si prefieres evitarlo, sube versiones con el número
-> tapado, o quita los certificados y deja solo su descripción.
+> Las constancias de Ceibal originales incluyen el **número de cédula**. Las
+> que hay en `assets/docs/` ya lo tienen censurado de verdad: el número se
+> borró del documento (no solo se tapó con un recuadro), así que tampoco se
+> puede copiar ni buscar. Si añades una constancia nueva, haz lo mismo antes
+> de subirla.
 
 ---
 
@@ -406,6 +419,7 @@ Sustituye `assets/images/benjamin-paz.jpg`. Recomendaciones:
 | Texto de *Sobre mí* | `index.html` → `<section id="sobre-mi">` |
 | Etapas de la timeline | `index.html` → `<ol class="timeline">` |
 | Skills | `index.html` → `<section id="skills">`, listas `<ul class="chips">` |
+| Novela (título, texto, portada) | `index.html` → `<section id="escritura">`; para la portada real, sustituye `<div class="book__cover">` por un `<img class="book__img">` (hay un ejemplo comentado) |
 | Enlaces de contacto | Buscar y reemplazar en `index.html` (aparecen en navbar, hero, contacto y footer) |
 | Título y descripción SEO | `index.html` → `<head>` |
 
@@ -426,7 +440,7 @@ https://www.youtube.com/@elaracnido515
 **Añadir una skill nueva:**
 
 ```html
-<li class="chip"><span class="chip__glyph" aria-hidden="true">TS</span>TypeScript</li>
+<li class="chip"><span class="chip__glyph" aria-hidden="true">Kt</span>Kotlin</li>
 ```
 
 ---
@@ -472,35 +486,36 @@ Las tipografías se cargan desde Google Fonts en `<head>` y se asignan en
 
 ## Cómo desplegarlo
 
-Al ser un sitio estático, funciona en cualquier hosting.
+Al ser un sitio estático, funciona en cualquier hosting. El destino previsto es
+**Cloudflare Pages**, que da una dirección `<nombre>.pages.dev` gratis y, más
+adelante, permite conectar un dominio propio.
 
-**GitHub Pages** (gratis, y encaja con el GitHub del portfolio):
+**Cloudflare Pages conectado al repositorio**
 
-```bash
-git init && git add . && git commit -m "Portfolio inicial"
-```
+1. En el panel de Cloudflare: **Workers & Pages → Crear → Pages → Conectar a
+   Git** (los nombres del panel pueden variar un poco).
+2. Elige el repositorio `Nimajeb-41/Portafolio` y la rama `main`.
+3. Configuración de compilación: *Framework preset* **None**, *Build command*
+   vacío y *Build output directory* `/` (la raíz). No hay nada que compilar.
+4. El nombre del proyecto decide la dirección: `benjaminpaz` →
+   `https://benjaminpaz.pages.dev` (si está ocupado, Cloudflare añade un sufijo).
 
-```bash
-git branch -M main && git remote add origin https://github.com/Nimajeb-41/portfolio.git && git push -u origin main
-```
+Cada push a `main` publica una versión nueva, y cada rama recibe su propia URL
+de vista previa.
 
-Después: repositorio → **Settings → Pages → Source: `main` / `root`**.
-El sitio queda en `https://nimajeb-41.github.io/portfolio/`.
+**Cuando tengas la dirección definitiva**, cambia en el `<head>` de
+`index.html` las rutas de `og:image` y `twitter:image` por la URL completa
+(`https://…/assets/images/og-image.jpg`) y añade
+`<link rel="canonical" href="https://…/">`. WhatsApp, LinkedIn y X solo
+muestran la imagen de vista previa con una URL absoluta.
 
-**Netlify o Vercel:** arrastra la carpeta a su panel, o conecta el repositorio.
-No hay comando de build; el directorio de publicación es la raíz.
-
-> ⚠️ **Importante sobre los vídeos.** La carpeta `assets/videos/` pesa unos
-> **280 MB**. GitHub avisa a partir de 50 MB por archivo y Pages tiene un límite
-> recomendado de 1 GB por repositorio. Antes de publicar tienes dos opciones:
->
-> 1. **Comprimir** los `.mp4` (por ejemplo con HandBrake a 1080p / ~2 Mbps),
->    lo que suele reducir el peso a una fracción; o
-> 2. **Alojar los vídeos en YouTube** y usar el campo `youtube` de `data.js`,
->    dejando solo las portadas en el repositorio.
->
-> La segunda opción es la más recomendable para producción: la carga es mucho
-> más rápida y el repositorio se mantiene ligero.
+> ⚠️ **Límite de 25 MiB por archivo.** Cloudflare Pages rechaza el despliegue
+> entero si un archivo supera ese tamaño, y hoy cinco `.mp4` lo superan:
+> `crustaceos` (55,8 MiB), `artropodos-introduccion` (52,9),
+> `hexapodos` (47,4), `oceano-profundo` (36,4) y `escorpiones-desierto` (25,7).
+> La solución prevista es la del campo `youtube` de `js/data.js`: con los nueve
+> enlaces completos, la galería reproduce desde YouTube y la carpeta
+> `assets/videos/*.mp4` se puede borrar (las portadas se quedan).
 
 ---
 
@@ -552,25 +567,26 @@ con un servidor estático. Sin `npm install`, sin build, sin configuración.
 Estos datos se dejaron deliberadamente vacíos para no publicar información
 inventada. Rellénalos cuando quieras:
 
+- [ ] **Enlaces a YouTube por vídeo** — campo `youtube` en `js/data.js`. Con
+      los nueve, se pueden borrar los `.mp4` y publicar en Cloudflare Pages.
 - [ ] **Fechas de los vídeos** — campo `date` en `js/data.js` (ahora `null`).
 - [ ] **Software de edición** — campo `software` en `js/data.js` (ahora `null`).
-- [ ] **Enlaces a YouTube por vídeo** — campo `youtube` en `js/data.js`.
 - [ ] **Descripciones de los vídeos** — son un borrador redactado a partir del
       título de cada uno; sustitúyelas por tu propio texto.
-- [ ] **Cédula de identidad en los certificados.** Los dos PDFs de Ceibal
-      incluyen el número de CI en su texto. Al publicar el sitio ese dato queda
-      accesible. Decide si los subes tal cual, con el número tapado, o si dejas
-      solo la descripción del curso sin el archivo.
+- [ ] **Datos de la novela** — título, sinopsis breve y portada en la sección
+      `#escritura` de `index.html` (hoy dice «Mi primera novela» y usa una
+      portada dibujada con CSS).
+- [ ] **URL definitiva del portfolio** — para `og:image`, `twitter:image` y
+      `canonical` (ver *Cómo desplegarlo*).
 - [ ] **Repositorio de PRISMA** — hoy la tarjeta no enlaza a ninguno.
 - [ ] **Repositorio de Football Tournament Manager** — indica *Sin repositorio
       público todavía*.
-- [ ] **Dominio y publicación de ImageForge** — la tarjeta lo dice
-      explícitamente: el código está terminado, falta desplegarlo.
-- [ ] **Repositorio del portfolio** — la tarjeta enlaza al perfil de GitHub.
-- [ ] **«A tres meses de egresar»** aparece en tres sitios de `index.html`
-      (presentación, tarjeta de datos y *timeline*). Es una frase relativa:
-      conviene actualizarla, o cambiarla por el mes concreto, cuando pase el
-      tiempo.
+- [ ] **Proyectos pendientes de subir** — por ejemplo, la liga Estebanquitos
+      (Node.js), los futuros mods de Minecraft en Java y el proyecto de egreso
+      con PHP y MySQL.
+- [ ] **Después del egreso (noviembre de 2026)** — cambiar «egreso en
+      noviembre» por «egresado» en `index.html` (presentación, tarjeta de
+      datos y *timeline*).
 
 ---
 

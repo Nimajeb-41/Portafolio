@@ -24,6 +24,7 @@
      19 · Capturas de proyecto y lightbox
      20 · Certificados
      21 · CV
+     22 · Escritura
    ========================================================================== */
 
 
@@ -461,6 +462,19 @@ p { text-wrap: pretty; }
 .chip:hover .chip__glyph { background: var(--accent); color: #04060a; }
 .chips--warm .chip:hover .chip__glyph { background: var(--warm); color: #fff; }
 
+/* Lenguaje principal: mismo chip, con borde de acento y una etiqueta */
+.chip--main { border-color: var(--accent-line); color: var(--text); }
+.chip__tag {
+  padding: .1rem .45rem;
+  border-radius: var(--r-pill);
+  background: var(--accent-soft);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 .social-row { display: flex; gap: .6rem; flex-wrap: wrap; }
 
 .social-btn {
@@ -535,6 +549,9 @@ p { text-wrap: pretty; }
   font-size: .82rem;
   letter-spacing: -.05em;
   flex: none;
+  /* Las dos letras van en columnas, lado a lado, y el grupo se centra. */
+  grid-auto-flow: column;
+  place-content: center;
   transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease-soft);
 }
 .brand__mark > span { display: block; }
@@ -737,8 +754,15 @@ p { text-wrap: pretty; }
   gap: clamp(2.5rem, 5vw, 5rem);
 }
 
+/* La columna del hero es un contenedor: el título se mide contra ella y no
+   contra la ventana. «BENJAMÍN» ocupa unas 4,5 veces su tamaño de letra, así
+   que con 21cqi siempre cabe; si el navegador no entiende `cqi`, se queda con
+   la primera declaración. */
+.hero__content { container-type: inline-size; }
+
 .hero__title {
   font-size: var(--fs-hero);
+  font-size: min(var(--fs-hero), 21cqi);
   font-weight: 700;
   letter-spacing: -.055em;
   line-height: .87;
@@ -746,6 +770,14 @@ p { text-wrap: pretty; }
 }
 .reveal-line { display: block; overflow: hidden; }
 .reveal-line > span { display: block; }
+
+/* Con line-height .87 la tilde de la Í y los bordes de la B quedaban fuera
+   de la máscara. El relleno agranda la máscara y el margen negativo lo
+   compensa, así que el título ocupa exactamente lo mismo que antes. */
+.hero__title .reveal-line {
+  padding: .16em .08em .06em;
+  margin: -.16em -.08em -.06em;
+}
 
 .hero__role {
   display: flex;
@@ -848,6 +880,7 @@ p { text-wrap: pretty; }
 }
 
 .terminal__bar {
+  position: relative;
   display: flex;
   align-items: center;
   gap: .8rem;
@@ -860,7 +893,13 @@ p { text-wrap: pretty; }
 .terminal__dots i:nth-child(1) { background: #ff5f57; }
 .terminal__dots i:nth-child(2) { background: #febc2e; }
 .terminal__dots i:nth-child(3) { background: #28c840; }
+/* Centrado en la barra: la tarjeta flotante de la esquina solo tapa los
+   puntos de colores, que son decorativos. */
 .terminal__title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   color: var(--text-3);
@@ -1102,7 +1141,8 @@ p { text-wrap: pretty; }
 
 .skills {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Cuatro grupos: dos columnas en escritorio, una en pantallas estrechas */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
   gap: 1.1rem;
 }
 
@@ -1900,6 +1940,12 @@ p { text-wrap: pretty; }
 
 .modal__player { position: relative; background: #000; aspect-ratio: 16 / 9; flex: none; }
 .modal__player video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+.modal__player video[hidden] { display: none; }
+
+/* Vídeos alojados en YouTube: el iframe ocupa el mismo hueco que el <video> */
+.modal__embed { position: absolute; inset: 0; }
+.modal__embed[hidden] { display: none; }
+.modal__embed iframe { display: block; width: 100%; height: 100%; border: 0; }
 
 .modal__info {
   display: flex;
@@ -2657,6 +2703,152 @@ p { text-wrap: pretty; }
 .ccard--li:hover { border-color: rgba(10, 102, 194, .55); }
 .ccard--li:hover .ccard__icon { color: #0a66c2; }
 :root[data-theme="dark"] .ccard--li:hover .ccard__icon { color: #4aa3ea; }
+
+
+/* ══════════════════ 22 · ESCRITURA ══════════════════ */
+
+.book {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  padding: clamp(1.75rem, 4vw, 3.5rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: linear-gradient(165deg, var(--surface) 0%, var(--bg-soft) 100%);
+  overflow: hidden;
+}
+.book::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--grad);
+  opacity: .6;
+}
+
+.book__visual {
+  display: grid;
+  place-items: center;
+  padding-block: 1rem;
+  perspective: 1400px;
+}
+
+/* La portada es un objeto, como la hoja del CV: se mantiene oscura y dorada
+   en los dos temas, con sus propios colores en lugar de los tokens. */
+.book__cover,
+.book__img {
+  width: min(250px, 72%);
+  border-radius: 4px 12px 12px 4px;
+  box-shadow:
+    inset 7px 0 10px -5px rgba(0, 0, 0, .65),
+    0 32px 60px -22px rgba(0, 0, 0, .75),
+    0 0 0 1px rgba(232, 199, 122, .16);
+  transform: rotateY(-16deg) rotateX(3deg);
+  transition: transform var(--t-slow) var(--ease);
+}
+.book:hover .book__cover,
+.book:hover .book__img { transform: rotateY(-5deg) rotateX(1deg) translateY(-4px); }
+
+.book__img { height: auto; }
+
+.book__cover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 2 / 3;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(232, 199, 122, .16) 0%, transparent 42%),
+    radial-gradient(ellipse at 50% 0%, #2b2455 0%, #141029 58%, #0b0917 100%);
+  color: #e8c77a;
+}
+/* Lomo: una franja más clara a la izquierda */
+.book__cover::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 12px;
+  border-radius: 4px 0 0 4px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(0, 0, 0, .35));
+}
+
+.book__frame,
+.book__frame::before {
+  position: absolute;
+  border: 1px solid rgba(232, 199, 122, .42);
+  border-radius: 2px 8px 8px 2px;
+}
+.book__frame { inset: 14px 14px 14px 22px; }
+.book__frame::before { content: ""; inset: 5px; opacity: .45; }
+
+.book__emblem {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 68px; height: 68px;
+  border: 1px solid rgba(232, 199, 122, .5);
+  border-radius: 50%;
+  box-shadow: 0 0 34px -4px rgba(232, 199, 122, .35);
+}
+.book__emblem svg { width: 30px; height: 30px; stroke-width: 1.5; }
+
+.book__genre {
+  position: relative;
+  margin-top: 1.2rem;
+  font-family: var(--font-display);
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+}
+.book__author {
+  position: absolute;
+  bottom: 30px;
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(232, 199, 122, .72);
+}
+
+.book__body { display: flex; flex-direction: column; gap: 1.1rem; min-width: 0; }
+
+.book__kicker {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.book__title { font-size: clamp(1.6rem, 3.2vw, 2.4rem); line-height: 1.1; }
+.book__desc { max-width: 34rem; color: var(--text-2); }
+
+.book__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: .8rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+.book__facts dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.book__facts dd {
+  margin-top: .15rem;
+  font-family: var(--font-display);
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.book__actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .4rem; }
 
 
 /* ══════════════════ UTILIDAD FINAL ══════════════════ */
