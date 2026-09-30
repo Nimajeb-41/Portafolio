@@ -1,6 +1,6 @@
 # Benjamín Paz — Portfolio
 
-> **Web Developer & Video Editor** · Uruguay 🇺🇾
+> **Web Developer & Content Creator** · Uruguay 🇺🇾
 
 Portfolio personal de **Benjamín Paz**: un sitio web estático, hecho a mano con
 HTML5, CSS3 y JavaScript, que reúne dos áreas de trabajo — el **desarrollo web**
@@ -55,6 +55,7 @@ se cruzan.
 | GitHub | [@Nimajeb-41](https://github.com/Nimajeb-41) |
 | Behance | [BenjaminPaz123](https://www.behance.net/BenjaminPaz123) |
 | YouTube | [@elaracnido515](https://www.youtube.com/@elaracnido515) |
+| Wattpad | [Nimajneb_ab](https://www.wattpad.com/user/Nimajneb_ab) |
 
 ---
 
@@ -85,7 +86,8 @@ se cruzan.
 - **Certificados** en PDF, con la cédula censurada, que se pueden ver y descargar
 - **Featured Projects**: cinco proyectos reales con capturas de cada uno
   ejecutándose, y un *lightbox* accesible para ampliarlas
-- **Escritura**: la novela de alta fantasía, con enlace a Payhip
+- **Escritura**: *La Elfa*, novela de alta fantasía, con su portada y enlaces
+  a Payhip y Wattpad
 - Sección de **CV** a ancho completo, que se mantiene oscura en los dos temas
   para separarse visualmente del resto de la página
 - **Video Editing** con galería filtrable por categoría y paginación
@@ -147,7 +149,8 @@ miportafolioweb/
 │   │   ├── certificado-ceibal-desarrollo-web.pdf
 │   │   └── certificado-ceibal-python.pdf
 │   ├── images/
-│   │   ├── benjamin-paz.jpg    Retrato de la sección "Sobre mí"
+│   │   ├── benjamin-paz.webp   Retrato de la sección "Sobre mí"
+│   │   ├── la-elfa-portada.webp  Portada de la novela (sección Escritura)
 │   │   ├── og-image.jpg        Imagen para redes sociales
 │   │   └── projects/           Capturas de cada proyecto
 │   ├── videos/                 Archivos .mp4 de la galería
@@ -398,7 +401,7 @@ Si cambias el número de páginas o el peso, actualiza también la lista
 
 ## Cómo cambiar la foto
 
-Sustituye `assets/images/benjamin-paz.jpg`. Recomendaciones:
+Sustituye `assets/images/benjamin-paz.webp` (si cambias el formato, actualiza también el `src` del `<img>`). Recomendaciones:
 
 - **Proporción**: el marco recorta a 4:5 (vertical). Una foto horizontal
   también sirve, pero se recortará por los lados.
@@ -419,7 +422,7 @@ Sustituye `assets/images/benjamin-paz.jpg`. Recomendaciones:
 | Texto de *Sobre mí* | `index.html` → `<section id="sobre-mi">` |
 | Etapas de la timeline | `index.html` → `<ol class="timeline">` |
 | Skills | `index.html` → `<section id="skills">`, listas `<ul class="chips">` |
-| Novela (título, texto, portada) | `index.html` → `<section id="escritura">`; para la portada real, sustituye `<div class="book__cover">` por un `<img class="book__img">` (hay un ejemplo comentado) |
+| Novela (título, texto, portada) | `index.html` → `<section id="escritura">`; la portada es `assets/images/la-elfa-portada.webp` |
 | Enlaces de contacto | Buscar y reemplazar en `index.html` (aparecen en navbar, hero, contacto y footer) |
 | Título y descripción SEO | `index.html` → `<head>` |
 
@@ -432,6 +435,7 @@ https://www.linkedin.com/in/benjam%C3%ADn-paz-50205439b
 https://github.com/Nimajeb-41
 https://www.behance.net/BenjaminPaz123
 https://www.youtube.com/@elaracnido515
+https://www.wattpad.com/user/Nimajneb_ab
 ```
 
 > El enlace de LinkedIn lleva `%C3%AD` porque la URL contiene una «í». Es la
@@ -453,7 +457,8 @@ https://www.youtube.com/@elaracnido515
 | Imagen para redes (Open Graph) | `assets/images/og-image.jpg` | 1200 × 630 px |
 | Portadas de vídeo | `assets/videos/posters/<id>.jpg` | 16:9, 1024 × 576 px |
 | Capturas de proyecto | `assets/images/projects/` | 16:9; se recortan por arriba |
-| Retrato | `assets/images/benjamin-paz.jpg` | Se recorta a 4:5 · ver sección propia |
+| Retrato | `assets/images/benjamin-paz.webp` | Se recorta a 4:5 · ver sección propia |
+| Portada de la novela | `assets/images/la-elfa-portada.webp` | Proporción de libro (unos 5:8) |
 
 **Consejo de peso:** exporta las portadas en JPG a calidad ~75 y por debajo de
 200 KB. Las etiquetas ya llevan `loading="lazy"` y `decoding="async"`.
@@ -573,9 +578,9 @@ inventada. Rellénalos cuando quieras:
 - [ ] **Software de edición** — campo `software` en `js/data.js` (ahora `null`).
 - [ ] **Descripciones de los vídeos** — son un borrador redactado a partir del
       título de cada uno; sustitúyelas por tu propio texto.
-- [ ] **Datos de la novela** — título, sinopsis breve y portada en la sección
-      `#escritura` de `index.html` (hoy dice «Mi primera novela» y usa una
-      portada dibujada con CSS).
+- [ ] **Sinopsis de La Elfa** (opcional) — hoy la sección `#escritura` solo
+      dice que es una novela de alta fantasía terminada; dos o tres líneas
+      sobre la historia la harían más atractiva.
 - [ ] **URL definitiva del portfolio** — para `og:image`, `twitter:image` y
       `canonical` (ver *Cómo desplegarlo*).
 - [ ] **Repositorio de PRISMA** — hoy la tarjeta no enlaza a ninguno.
@@ -630,7 +635,7 @@ Los detalles están en el propio archivo `LICENSE`.
 
 <div align="center">
 
-**Benjamín Paz** · Web Developer & Video Editor · Uruguay 🇺🇾
+**Benjamín Paz** · Web Developer & Content Creator · Uruguay 🇺🇾
 
 [GitHub](https://github.com/Nimajeb-41) ·
 [Behance](https://www.behance.net/BenjaminPaz123) ·

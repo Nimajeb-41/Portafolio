@@ -92,7 +92,7 @@
 
   if (!window.matchMedia('(max-width: 640px)').matches) {
     console.log(
-      '%c BENJAMÍN PAZ %c Web Developer & Video Editor ',
+      '%c BENJAMÍN PAZ %c Web Developer & Content Creator ',
       'background:#00e0c6;color:#04060a;font-weight:700;padding:4px 8px;border-radius:4px 0 0 4px',
       'background:#0f1219;color:#a8b0c0;padding:4px 8px;border-radius:0 4px 4px 0',
       '\n\n¿Curioseando el código? Me parece bien.\nHablemos: https://github.com/Nimajeb-41\n'

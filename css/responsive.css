@@ -89,7 +89,7 @@
 
   /* Escritura: la portada pasa encima del texto */
   .book { grid-template-columns: minmax(0, 1fr); }
-  .book__cover, .book__img { width: min(210px, 62%); }
+  .book__img { width: min(210px, 62%); }
 
   .section__head { margin-bottom: 2.25rem; }
 
